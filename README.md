@@ -1,4 +1,4 @@
-# <Project Name> by Wandering Light
+# Project Name by Wandering Light
   Sophie Liu (PM)
   <br>
   Jonathan Wu
