@@ -20,3 +20,6 @@ roshaniS -- 2021-12-10 9:00
 - Updated summary on the readme file
 - Created requirements.txt
 - Added launch codes
+
+sophieL - 2021-12-10 9:05
+- added header to __init__.py and index.html 
