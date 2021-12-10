@@ -7,3 +7,11 @@ shresthaR -- 2021-12-07 19:57
 
 shresthaR -- 2021-12-08 20:41
 - Added design doc
+
+wuJ -- 2021-12-09 22:25
+- Updated design document by adding the following:
+[x] An elaboration of the project description in the beginning
+[x] Elaborated on the site map 
+[x] Added a login & registion & view page to our website design
+[x] Moved the component map to the beginning
+[x] Added in databases for storing data like usernames and text
