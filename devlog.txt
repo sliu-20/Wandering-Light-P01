@@ -27,3 +27,6 @@ sophieL - 2021-12-10 9:21
 
 jonathanW -- 2021-12-10 9:22
 - added base skeleton code for the app (__init__.py)
+
+roshaniS -- 2021-12-10 9:24
+- Added login.html and some basic code
