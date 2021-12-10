@@ -16,6 +16,7 @@ jonathanW -- 2021-12-09 22:25
 [x] Moved the component map to the beginning
 [x] Added in databases for storing data like usernames and text
 
-roshaniS -- 2021-12-10 8:54 
+roshaniS -- 2021-12-10 9:00
 - Updated summary on the readme file
 - Created requirements.txt
+- Added launch codes
