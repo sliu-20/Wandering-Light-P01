@@ -7,4 +7,4 @@
   <br>
   Ryan Wang - backend/python/api/flask
 
-Vacation Time is a website dedicated to providing suggestions on vacation time, places, activities based on user preferences. 
+Vacation Time is a website dedicated to providing suggestions on vacation time, places, and activities based on user preferences. 
