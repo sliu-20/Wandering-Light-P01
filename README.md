@@ -41,4 +41,4 @@ With a virtual environment launched, run the commands:
 
 (venv) $ python3 __init__.py
 ```
-Open webpage at http://127.0.0.1:5000/
+### Open webpage at http://127.0.0.1:5000/
