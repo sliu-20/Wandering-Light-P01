@@ -30,3 +30,7 @@ jonathanW -- 2021-12-10 9:22
 
 roshaniS -- 2021-12-10 9:24
 - Added login.html and some basic code
+
+roshaniS -- 2021-12-10 12:10 
+- Updated login.html with some more Bootstrap to make the page look better 
+- Fixed the submit button
