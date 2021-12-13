@@ -13,12 +13,15 @@ time spent: ??
         <title> Login </title>
     </head>
     <body>
-        <form action = "auth" method = "POST">
-            Username: <input type="text" name="username">
+        <h1 class="px-4"> Welcome to Vacation Time! </h1>
+        <br>
+        <h2 class="px-4"> Login </h2>
+        <form class="px-4" action = "auth" method = "POST">
+            <input type="text" class="form-control" name="username" placeholder="Username">
             <br>
-            Password: <input type="password" name="password">
+            <input type="password" class="form-control" name="password" placeholder="Password">
             <br>
-            <button type="button" class="btn btn-dark"><input type="submit" name="sub1"></button>
+            <input class="btn btn-dark btn-lg btn-block" type="submit" name="sub1">
         </form>
     </body>
 </html>
