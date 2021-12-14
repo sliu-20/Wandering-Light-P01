@@ -52,6 +52,8 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
+
+    print(p_data[0])
     c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES (?);""", p_data)
 
 @app.route("/") # assign fxn to route

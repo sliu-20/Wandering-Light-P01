@@ -34,3 +34,6 @@ roshaniS -- 2021-12-10 9:24
 roshaniS -- 2021-12-10 12:10 
 - Updated login.html with some more Bootstrap to make the page look better 
 - Fixed the submit button
+
+ryanW -- 2021-12-13 19:51
+- Discovered a bug in c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES (?);""", p_data) because p_data isn't 1 thing
