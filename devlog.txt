@@ -41,3 +41,7 @@ ryanW -- 2021-12-13 19:51
 sophieL - 2021-12-14 9:11
 - added color scheme variables to index.html
 - added a Vacation Time summary card
+
+roshaniS - 2021-12-14 10:19
+- Updated login.html
+- Made submit button, username text box, and password text box look better 
