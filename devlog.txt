@@ -37,3 +37,6 @@ roshaniS -- 2021-12-10 12:10
 
 ryanW -- 2021-12-13 19:51
 - Discovered a bug in c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES (?);""", p_data) because p_data isn't 1 thing
+
+sophieL - 2021-12-14 9:11
+- added color scheme variables to index.html
