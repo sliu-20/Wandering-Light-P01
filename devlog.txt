@@ -40,3 +40,4 @@ ryanW -- 2021-12-13 19:51
 
 sophieL - 2021-12-14 9:11
 - added color scheme variables to index.html
+- added a Vacation Time summary card
