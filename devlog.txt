@@ -61,3 +61,6 @@ roshaniS -- 2021-12-14 19:51
 sophieL -- 2021-12-14 22:23
 - added register.html through a copy of login.html, with an additional input field for confirmation
 - attached style.css to index.html
+
+jonathanW -- 2021-12-14 23:44
+- added more code to the __init__.py. I added function routes to the login and reigster page as well as a new table for storing the API data that was retrived.
