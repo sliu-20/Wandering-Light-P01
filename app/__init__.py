@@ -71,18 +71,59 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     # db.commit()
     # db.close()
 
+def isAlphanumerical(string):
+    for char in string:
+        l = ord(char)
+        if not ((0x41 <= o <= 0x5A) or (0x61 <= o <= 0x7A) or (0x30 <= o <= 0x39)):
+            return False;
+    return True;
+
 @app.route("/") # assign fxn to route for home page
 def home_page():
     api_store()
     return render_template("index.html")
 
-@app.route("/login") # assign fxn to route for login page
+@app.route("/login", methods=['GET', 'POST']) # assign fxn to route for login page
 def login_page():
     return render_template("login.html")
 
-@app.route("/register") # assign fxn to route for register page
+@app.route("/register", methods=['GET', 'POST'])) # assign fxn to route for register page
 def register_page():
-    return render_template("register.html")
+    if request.method == "POST":
+        db = sqlite3.connect(MAIN_DB)
+        c = db.cursor()
+        c.execute("""SELECT UESERNAME FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
+        exists = c.fetchone()
+        if (exists == None):
+            username = (request.form['username']).encode('utf-8')
+            if isAlphanumerical(username.decode('utf-8')) ==  None:
+                db.close()
+                return render_template("register.html", user=session.get('username'), error="Username can only contain alphanumeric characters and underscores.")
+            if len(username) < 5 or len(username) > 15:
+                db.close()
+                return render_template("register.html", user=session.get('username'), error="Username must be between 5 and 15 characters long.")
+            password = request.form['password']
+            if ' ' in list(password) or '\\' in list(password):
+                db.close()
+                return render_template("register.html", user=session.get('username'), error="Passwords cannot contain spaces or backslashes.")
+            password = str(password)
+            if len(password) > 7 and len(password) <= 50:
+                c.execute("""INSERT INTO USERS (USERNAME, HASH) VALUES (?,?)""", request.form['username'], password,))
+                db.commit()
+                c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;"""), (request.form['username'],))
+                exists = c.fetchone()
+                db.close()
+                if (exists != None):
+                    return render_template("login.html", user=session.get('username'), error="Signed up successfully!")
+                else:
+                    return render_template("login.html", user=session.get('username'), error="An error occurred. Try signing up again.")
+            else:
+                db.close()
+                return render_template("login.html", user=session.get('username'), error="Password must be between 8 and 50 characters long.")
+        else:
+            return render_template("login.html", user=session.get('username'), error="Some error occurred. Please try signing up again.")
+    else:
+        return render_template("login.html", user=session.get('username'))
 
 if __name__ == "__main__": # true if this file is NOT imported
     app.debug = True       # enable auto-reload upon code change
