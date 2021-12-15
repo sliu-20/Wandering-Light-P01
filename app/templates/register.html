@@ -14,7 +14,7 @@ time spent: ??
         <title> Register </title>
     </head>
     <body>
-        <h1 class="px-4"> Register your account </h1>
+        <h1 class="px-4"> Register your account! </h1>
         <br>
         <h2 class="px-4"> Register </h2>
         <form class="px-4" action = "auth" method = "POST">
@@ -29,8 +29,15 @@ time spent: ??
             </div>
         </form>
         <br>
-        <form class="px-4" action = "register" method = "POST">
-            <p> Have an account? Login <input class="btn btn-link" type="submit" name="register.html" value="here">.</p>
+        <form class="px-4" action = "login" method = "POST">
+          <button type="button" class="btn btn-light" type="submit">
+            <a href="/login">
+              <text>
+                Have an account? Login here.
+             </text>
+           </a>
+          </button>
         </form>
+
     </body>
 </html>
