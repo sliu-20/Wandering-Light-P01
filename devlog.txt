@@ -45,3 +45,8 @@ sophieL - 2021-12-14 9:11
 roshaniS - 2021-12-14 10:19
 - Updated login.html
 - Made submit button, username text box, and password text box look better 
+
+roshaniS - 2021-12-14 7:06
+- Added static folder and a css folder inside of it
+- Added style.css in the css folder and linked it to login.html
+- Moved internal style sheets to style.css
