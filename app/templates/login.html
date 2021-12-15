@@ -18,13 +18,17 @@ time spent: ??
         <br>
         <h2 class="px-4"> Login </h2>
         <form class="px-4" action = "auth" method = "POST">
-        <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" placeholder="Username">
             <br>
             <input type="password" class="form-control" name="password" placeholder="Password">
             <br>
             <div class="d-grid gap-2">
-            <input class="btn btn-dark" type="submit" name="sub1">
+            <input class="btn btn-dark" type="submit" name="login" value="Login">
             </div>
+        </form>
+        <br>
+        <form class="px-4" action = "register" method = "POST">
+            <p> Don't have an account? Register <input class="btn btn-link" type="submit" name="register" value="here">.</p>
         </form>
     </body>
 </html>
