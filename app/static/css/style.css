@@ -28,3 +28,11 @@ input[type=submit]:hover {
     border: var(--turquoise);
     border-style: dashed;
 }
+
+:root {
+    --blue: #227c9d;
+    --turquoise: #17c3b2;
+    --orange: #ffcb77;
+    --white: #fef9ef;
+    --pink: #fe6d73;
+}
