@@ -63,4 +63,7 @@ sophieL -- 2021-12-14 22:23
 - attached style.css to index.html
 
 jonathanW -- 2021-12-14 23:44
-- added more code to the __init__.py. I added function routes to the login and reigster page as well as a new table for storing the API data that was retrived.
+- added more code to the __init__.py. I added function routes to the login and register page as well as a new table for storing the API data that was retrived.
+
+jonathanW -- 2021-12-15 9:15
+- started working on register function to verify and process username/password system.
