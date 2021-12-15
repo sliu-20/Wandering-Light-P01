@@ -9,6 +9,7 @@ time spent: ??
 body {
     background-color: var(--blue);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 8px;
 }
 
 input[type=text]:hover, input[type=password]:hover {
@@ -25,16 +26,18 @@ input[name=login] {
     border: white;
     border-style: solid;
 }
+
 input[name=login]:hover {
     transition: all 0.5s ease;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 11.09pt;
     color: var(--blue);
     background-color: var(--white);
     border: var(--turquoise);
     border-style: dashed;
 }
 
-input[name=register] {
+input[name=register], input[name="register.html"] {
     color: var(--white);
     padding-top: 0px;
     padding-bottom: 3px;
@@ -43,7 +46,7 @@ input[name=register] {
     text-decoration: none;
 }
 
-input[name=register]:hover {
+input[name=register]:hover, input[name="register.html"]:hover {
     color: var(--white);
     color: var(--orange);
     text-decoration: underline dotted;
