@@ -54,3 +54,7 @@ roshaniS -- 2021-12-14 19:06
 roshaniS -- 2021-12-14 19:51
 - Made login page look better by changing the font and button styles
 - Added register link (no functionality yet)
+
+sophieL -- 2021-12-14 22:23
+- added register.html through a copy of login.html, with an additional input field for confirmation
+- attached style.css to index.html
