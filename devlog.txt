@@ -67,3 +67,8 @@ jonathanW -- 2021-12-14 23:44
 
 jonathanW -- 2021-12-15 9:15
 - started working on register function to verify and process username/password system.
+
+roshaniS -- 2021-12-15 11:36
+- Worked on style.css and added more Bootstrap to login.html
+- Changed the font size in the login button when the user hovers over it
+- Added containers and changed some of their background colors 
