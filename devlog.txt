@@ -11,7 +11,7 @@ roshaniS -- 2021-12-08 20:41
 jonathanW -- 2021-12-09 22:25
 - Updated design document by adding the following:
 [x] An elaboration of the project description in the beginning
-[x] Elaborated on the site map 
+[x] Elaborated on the site map
 [x] Added a login & registion & view page to our website design
 [x] Moved the component map to the beginning
 [x] Added in databases for storing data like usernames and text
@@ -31,9 +31,12 @@ jonathanW -- 2021-12-10 9:22
 roshaniS -- 2021-12-10 9:24
 - Added login.html and some basic code
 
-roshaniS -- 2021-12-10 12:10 
-- Updated login.html with some more Bootstrap to make the page look better 
+roshaniS -- 2021-12-10 12:10
+- Updated login.html with some more Bootstrap to make the page look better
 - Fixed the submit button
+
+jonathanW -- 2021-12-13 9:14
+- Started to work on adding APIs to the database, and I started with all the countries and their capitals.
 
 ryanW -- 2021-12-13 19:51
 - Discovered a bug in c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES (?);""", p_data) because p_data isn't 1 thing
@@ -44,7 +47,7 @@ sophieL -- 2021-12-14 9:11
 
 roshaniS -- 2021-12-14 10:19
 - Updated login.html
-- Made submit button, username text box, and password text box look better 
+- Made submit button, username text box, and password text box look better
 
 roshaniS -- 2021-12-14 19:06
 - Added static folder and a css folder inside of it
