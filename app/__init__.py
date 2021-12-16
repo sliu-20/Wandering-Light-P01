@@ -87,7 +87,7 @@ def home_page():
 def login_page():
     return render_template("login.html")
 
-@app.route("/register", methods=['GET', 'POST'])) # assign fxn to route for register page
+@app.route("/register", methods=['GET', 'POST']) # assign fxn to route for register page
 def register_page():
     if request.method == "POST":
         db = sqlite3.connect(MAIN_DB)
@@ -108,9 +108,9 @@ def register_page():
                 return render_template("register.html", user=session.get('username'), error="Passwords cannot contain spaces or backslashes.")
             password = str(password)
             if len(password) > 7 and len(password) <= 50:
-                c.execute("""INSERT INTO USERS (USERNAME, HASH) VALUES (?,?)""", request.form['username'], password,))
+                c.execute("""INSERT INTO USERS (USERNAME, HASH) VALUES (?,?)""", request.form['username'], password,)
                 db.commit()
-                c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;"""), (request.form['username'],))
+                c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;"""), (request.form['username'],)
                 exists = c.fetchone()
                 db.close()
                 if (exists != None):
