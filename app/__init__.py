@@ -64,10 +64,17 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
+    print(type(p_data))
+    print(p_data)
+    # Ryan Wang: working on moving this list to VACATIONDATA (SQL)
+
+    # print(f"p_data: \n{pdata}")
 
     # c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES();""", p_data[0])
     # db.commit()
     # db.close()
+
+api_store()
 
 def isAlphanumerical(string):
     for char in string:
