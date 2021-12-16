@@ -71,4 +71,11 @@ jonathanW -- 2021-12-15 9:15
 roshaniS -- 2021-12-15 11:36
 - Worked on style.css and added more Bootstrap to login.html
 - Changed the font size in the login button when the user hovers over it
-- Added containers and changed some of their background colors 
+- Added containers and changed some of their background colors
+
+jonathanW -- 2021-12-15 22:40
+- Syntax fixes to the app and added things for the login/register routes.
+- Small changes to the style.css for hyperlinks
+- Changes to the html files to accommodate for changes in the python file.
+- Added a logout route.
+- More small changes to the html files to make things look nicer and have an interactable UI.
