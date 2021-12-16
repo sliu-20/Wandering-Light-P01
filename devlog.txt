@@ -89,3 +89,8 @@ sophieL -- 2021-12-16 09:25
 - Updated tabbing in login.html and register.html
 - Updated register.html so that it matched login.html
 - Added list group to index.html
+
+roshaniS -- 2021-12-16 16:25
+- Fixed register button so that it has the same style as the login button
+- Linked the home page to the home tab on the navbar
+- Added Bootstrap to style the dropdown menus
