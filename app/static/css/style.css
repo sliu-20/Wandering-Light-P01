@@ -1,9 +1,9 @@
-/* 
+/*
 Wandering Lights | Sophie Liu (Quacky), Ryan Wang (Jack), Jonathan Wu (Loki), Roshani Shrestha (Pete)
 SoftDev
 P01: ArRESTed Development
 2021-12-10
-time spent: ??  
+time spent: ??
 */
 
 body {
@@ -14,12 +14,12 @@ body {
 
 input[type=text]:hover, input[type=password]:hover {
     transition: all 0.2s ease;
-    background-color: var(--orange); 
+    background-color: var(--orange);
 }
 
 input[type=text]:focus, input[type=password]:focus {
     transition: all 0.2s ease;
-    background-color: var(--pink); 
+    background-color: var(--pink);
 }
 
 input[name=login] {
@@ -51,6 +51,16 @@ input[name=register]:hover, input[name="register.html"]:hover {
     color: var(--orange);
     text-decoration: underline dotted;
     text-decoration-thickness: 3px;
+}
+
+#redirect-link {
+  color: black;
+  text-decoration: none;
+}
+
+#redirect-link:hover {
+  color: white;
+  transition: all 0.5s ease;
 }
 
 :root {
