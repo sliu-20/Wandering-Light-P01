@@ -79,3 +79,8 @@ jonathanW -- 2021-12-15 22:40
 - Changes to the html files to accommodate for changes in the python file.
 - Added a logout route.
 - More small changes to the html files to make things look nicer and have an interactable UI.
+
+roshaniS -- 2021-12-16 24:07
+- Added input.html with basic code for user input (dropdown menus, checkboxes) 
+- Added this as "Questions" in the navbar
+- Edited the style of links in the navbar 
