@@ -148,6 +148,10 @@ def register_page():
     else:
         return render_template("register.html", user=session.get('username'))
 
+@app.route("/input")
+def input():
+    return render_template("input.html", user=session.get('username'))
+
 @app.route("/logout")
 def logout():
     session.pop('username', default=None)
