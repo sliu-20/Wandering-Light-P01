@@ -84,3 +84,8 @@ roshaniS -- 2021-12-16 24:07
 - Added input.html with basic code for user input (dropdown menus, checkboxes) 
 - Added this as "Questions" in the navbar and linked it to input.html through an input route (input function was made in __init__.py)
 - Edited the style of links in the navbar 
+
+sophieL -- 2021-12-16 09:25
+- Updated tabbing in login.html and register.html
+- Updated register.html so that it matched login.html
+- Added list group to index.html
