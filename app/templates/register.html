@@ -14,13 +14,18 @@ time spent: ??
         <title> Register </title>
     </head>
     <body>
+      <div class="container-md p-2" style="background-color: var(--white);">
         <h1 class="px-4"> Register your account! </h1>
-        <h1 class="px-4"> {{ error }} </h1>
+        <h1 class="error"> {{ error }} </h1>
+      </div>
         <br>
-        <h2 class="px-4"> Register </h2>
-        <form class="px-4" action = "register" method = "POST">
+        <div class="container-md p-2" style="background-color: var(--turquoise);">
+          <h2 class="px-4"> Register </h2>
+          <form class="px-4" action = "register" method = "POST">
+            <p> Username must be 5-15 characters long </p>
             <input type="text" class="form-control" name="username" placeholder="Username">
             <br>
+            <p> Password must be 7-50 characters long </p>
             <input type="password" class="form-control" name="password" placeholder="Password">
             <br>
             <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password">
@@ -28,7 +33,8 @@ time spent: ??
             <div class="d-grid gap-2">
               <input class="btn btn-dark" type="submit" value="Register">
             </div>
-        </form>
+          </form>
+        </div>
         <br>
         <form class="px-4" action = "login" method = "POST">
           <button type="button" class="btn btn-light" type="submit">

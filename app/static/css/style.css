@@ -58,6 +58,10 @@ input[name=register]:hover, input[name="register.html"]:hover {
     text-decoration-thickness: 3px;
 }
 
+.error {
+  color: var(--pink);
+}
+
 #redirect-link {
   color: black;
   text-decoration: none;
