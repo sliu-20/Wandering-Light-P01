@@ -15,9 +15,10 @@ time spent: ??
     </head>
     <body>
         <h1 class="px-4"> Register your account! </h1>
+        <h1 class="px-4"> {{ error }} </h1>
         <br>
         <h2 class="px-4"> Register </h2>
-        <form class="px-4" action = "auth" method = "POST">
+        <form class="px-4" action = "register" method = "POST">
             <input type="text" class="form-control" name="username" placeholder="Username">
             <br>
             <input type="password" class="form-control" name="password" placeholder="Password">
@@ -25,7 +26,7 @@ time spent: ??
             <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password">
             <br>
             <div class="d-grid gap-2">
-              <input class="btn btn-dark" type="submit" name="login" value="Login">
+              <input class="btn btn-dark" type="submit" value="Register">
             </div>
         </form>
         <br>
@@ -38,6 +39,15 @@ time spent: ??
            </a>
           </button>
         </form>
-
+        <br>
+        <form class="px-4">
+          <button type="button" class="btn btn-light" type="submit">
+            <a href="/">
+              <text>
+                Return to homepage.
+             </text>
+           </a>
+          </button>
+        </form>
     </body>
 </html>

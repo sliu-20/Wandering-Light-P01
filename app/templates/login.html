@@ -1,9 +1,9 @@
-<!-- 
+<!--
 Wandering Lights | Sophie Liu (Quacky), Ryan Wang (Jack), Jonathan Wu (Loki), Roshani Shrestha (Pete)
 SoftDev
 P01: ArRESTed Development
 2021-12-10
-time spent: ?? 
+time spent: ??
 -->
 
 <!DOCTYPE html>
@@ -15,12 +15,13 @@ time spent: ??
     </head>
     <body>
         <div class="container-md p-2" style="background-color: var(--white);">
-        <h1 class="px-4"> Welcome to Vacation Time! </h1>
+        <h1 class="px-4"> Welcome to Vacation Time! <br> {{ error }}</h1>
+        <p>
         </div>
         <br>
         <div class="container-md p-2" style="background-color: var(--turquoise);">
             <h2 class="px-4"> Login </h2>
-            <form class="px-4" action = "auth" method = "POST">
+            <form class="px-4" action = "login" method = "POST">
                 <input type="text" class="form-control" name="username" placeholder="Username">
                 <br>
                 <input type="password" class="form-control" name="password" placeholder="Password">
@@ -32,9 +33,25 @@ time spent: ??
         </div>
         <br>
         <div class="container-md">
-            <form class="px-4" action = "register" method = "POST">
-                <p> Don't have an account? Register <input class="btn btn-link" type="submit" name="register" value="here">.</p>
-            </form>
+          <form class="px-4" action = "register" method = "POST">
+            <button type="button" class="btn btn-light" type="submit">
+              <a href="/register">
+                <text>
+                  Don't have an account? Register here.
+               </text>
+             </a>
+            </button>
+          </form>
+          <br>
+          <form class="px-4">
+            <button type="button" class="btn btn-light" type="submit">
+              <a href="/">
+                <text>
+                  Return to homepage.
+               </text>
+             </a>
+            </button>
+          </form>
         </div>
     </body>
 </html>

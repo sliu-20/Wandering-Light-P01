@@ -17,7 +17,13 @@ time spent: ?? -->
       <div class="container-fluid">
         <span class="navbar-brand">Home</span>
         <span class="navbar-brand">View</span>
-        <span class="navbar-brand">Logout</span>
+        {% if user %}
+          <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
+          <span class="navbar-brand"> Hi, {{ user }} </span>
+          <span class="navbar-brand"> Randomize </span>
+        {% else %}
+          <span class="navbar-brand"> Randomize </span>
+        {% endif %}
       </div>
     </nav>
     <div class="card" style="background-color:var(--orange)">
@@ -31,6 +37,40 @@ time spent: ?? -->
         </p>
       </div>
     </div>
-    <p> TEST </p>
+    <div class="card" style="background-color:var(--white)">
+      <div class="card-body">
+        <div class="card-title">
+          <h1> Things to Choose From </h1>
+        </div>
+        <p class="card-text">
+          We randomize your vacation time interests based on five different things:
+          <li> COUNTRY
+          <li> FORECAST
+          <li> HOLIDAYS
+          <li> ACTIVITY
+          <li> BOOKS
+        </p>
+      </div>
+    </div>
+    <br>
+    <form class="px-4" action = "login" method = "POST">
+      <button type="button" class="btn btn-light" type="submit">
+        <a href="/login">
+          <text>
+            Have an account? Login here.
+         </text>
+       </a>
+      </button>
+    </form>
+    <br>
+    <form class="px-4" action = "register" method = "POST">
+      <button type="button" class="btn btn-light" type="submit">
+        <a href="/register">
+          <text>
+            Don't have an account? Create one here.
+         </text>
+       </a>
+      </button>
+    </form>
   </body>
 </html>
