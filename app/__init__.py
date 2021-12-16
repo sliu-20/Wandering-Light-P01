@@ -26,8 +26,7 @@ CREATE TABLE IF NOT EXISTS SAVED (
     FORECAST   TEXT    NOT NULL,
     HOLIDAYS   TEXT    NOT NULL,
     ACTIVITY   TEXT    NOT NULL,
-    BOOKS      TEXT    NOT NULL,
-    MEDIA      TEXT    NOT NULL
+    BOOKS      TEXT    NOT NULL
 );""")
 
 # Storing data table creation
@@ -37,8 +36,7 @@ CREATE TABLE IF NOT EXISTS VACATIONDATA (
     FORECAST   TEXT    NOT NULL,
     HOLIDAYS   TEXT    NOT NULL,
     ACTIVITY   TEXT    NOT NULL,
-    BOOKS      TEXT    NOT NULL,
-    MEDIA      TEXT    NOT NULL
+    BOOKS      TEXT    NOT NULL
 );""")
 
 # User/password table creation
@@ -73,26 +71,46 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
 
 def isAlphanumerical(string):
     for char in string:
-        l = ord(char)
+        o = ord(char)
         if not ((0x41 <= o <= 0x5A) or (0x61 <= o <= 0x7A) or (0x30 <= o <= 0x39)):
             return False;
     return True;
 
 @app.route("/") # assign fxn to route for home page
 def home_page():
-    api_store()
-    return render_template("index.html")
+    return render_template("index.html", user=session.get('username'))
 
 @app.route("/login", methods=['GET', 'POST']) # assign fxn to route for login page
 def login_page():
-    return render_template("login.html")
+    if request.method == "POST":
+        if 'username' in session:
+            return render_template("login.html", user=session.get('username'), error = "Already logged in!")
+        if 'username' in request.form and 'password' in request.form:
+            db = sqlite3.connect(MAIN_DB)
+            c = db.cursor()
+            c.execute("""SELECT PASSWORD FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
+            hash = c.fetchone()
+            db.close()
+            print(request.form['password'])
+            if (hash == None):
+                return render_template("login.html", user=session.get('username'), error = "User does not exist.")
+            else:
+                if hash[0] == request.form['password']:
+                    session['username'] = request.form['username']
+                    return render_template("index.html", user=session.get('username'), error = "Logged in!")
+                else:
+                     return render_template("login.html", user=session.get('username'), error="Password is incorrect")
+        else:
+            return render_template("login.html", user=session.get('username'), error="An error occurred. Please try logging in again.")
+    else:
+        return render_template("login.html", user=session.get('username'))
 
 @app.route("/register", methods=['GET', 'POST']) # assign fxn to route for register page
 def register_page():
     if request.method == "POST":
         db = sqlite3.connect(MAIN_DB)
         c = db.cursor()
-        c.execute("""SELECT UESERNAME FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
+        c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
         exists = c.fetchone()
         if (exists == None):
             username = (request.form['username']).encode('utf-8')
@@ -108,22 +126,32 @@ def register_page():
                 return render_template("register.html", user=session.get('username'), error="Passwords cannot contain spaces or backslashes.")
             password = str(password)
             if len(password) > 7 and len(password) <= 50:
-                c.execute("""INSERT INTO USERS (USERNAME, HASH) VALUES (?,?)""", request.form['username'], password,)
-                db.commit()
-                c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;"""), (request.form['username'],)
-                exists = c.fetchone()
-                db.close()
-                if (exists != None):
-                    return render_template("login.html", user=session.get('username'), error="Signed up successfully!")
+                checkPassword = request.form['confirm-password']
+                if password == checkPassword:
+                    print(checkPassword)
+                    c.execute("""INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?,?)""", (request.form['username'], password))
+                    db.commit()
+                    c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
+                    exists = c.fetchone()
+                    db.close()
+                    if (exists != None):
+                        return render_template("login.html", user=session.get('username'), action="/login", name="Login", error="Signed up successfully!")
+                    else:
+                        return render_template("register.html", user=session.get('username'), error="An error occurred. Try signing up again.")
                 else:
-                    return render_template("login.html", user=session.get('username'), error="An error occurred. Try signing up again.")
+                    return render_template("register.html", user=session.get('username'), error="Passwords do not match.")
             else:
                 db.close()
-                return render_template("login.html", user=session.get('username'), error="Password must be between 8 and 50 characters long.")
+                return render_template("register.html", user=session.get('username'), error="Password must be between 8 and 50 characters long.")
         else:
-            return render_template("login.html", user=session.get('username'), error="Some error occurred. Please try signing up again.")
+            return render_template("register.html", user=session.get('username'), error="Username is taken. Try using a different one.")
     else:
-        return render_template("login.html", user=session.get('username'))
+        return render_template("register.html", user=session.get('username'))
+
+@app.route("/logout")
+def logout():
+    session.pop('username', default=None)
+    return redirect("/")
 
 if __name__ == "__main__": # true if this file is NOT imported
     app.debug = True       # enable auto-reload upon code change
