@@ -15,9 +15,9 @@ time spent: ?? -->
     <body>
         <nav class="navbar navbar-light" style="background-color: var(--pink)">
         <div class="container-fluid">
-            <span class="navbar-brand">Home</span>
+            <span class="navbar-brand"><a href="/">Home</a></span>
             <span class="navbar-brand">View</span>
-            <span class="navbar-brand"><a href="input.html">Questions</a></span>
+            <span class="navbar-brand"><a href="/input">Questions</a></span>
             {% if user %}
             <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
             <span class="navbar-brand"> Hi, {{ user }} </span>
@@ -34,7 +34,7 @@ time spent: ?? -->
                     <h1> Book Subjects </h1>
                     </div>
                     <p class="card-text">
-                        <select id="subjects" name="subjects" multiple>
+                        <select class="form-select form-select-sm" id="subjects" name="subjects">
                             <option value="subj1">Subj1</option>
                             <option value="subj2">Subj2</option>
                         </select>
@@ -47,7 +47,7 @@ time spent: ?? -->
                     <h1> Languages </h1>
                     </div>
                     <p class="card-text">
-                        <select id="subjects" name="languages" multiple>
+                        <select class="form-select form-select-sm" id="subjects" name="languages" multiple>
                             <option value="lang1">Lang1</option>
                             <option value="lang2">Lang2</option>
                         </select>
