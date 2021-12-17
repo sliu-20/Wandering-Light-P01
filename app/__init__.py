@@ -83,6 +83,44 @@ def isAlphanumerical(string):
             return False;
     return True;
 
+# makes a list of languages 
+langs = []
+def lang():
+    db = sqlite3.connect(MAIN_DB)
+    c = db.cursor()
+    url = "https://restcountries.com/v2/all?fields=languages"
+    data = urllib.request.urlopen(url)
+    read_data = data.read()
+    d_data = read_data.decode('utf-8')
+    p_data = json.loads(d_data)
+    # print(type(p_data))
+    # print(p_data)
+    for x in p_data:
+        if x['languages'][0]['name'] not in langs:
+            langs.append(x['languages'][0]['name'])
+
+lang()
+# print(langs)
+
+# makes a list of regions
+regions = []
+def region():
+    db = sqlite3.connect(MAIN_DB)
+    c = db.cursor()
+    url = "https://restcountries.com/v2/all?fields=region"
+    data = urllib.request.urlopen(url)
+    read_data = data.read()
+    d_data = read_data.decode('utf-8')
+    p_data = json.loads(d_data)
+    # print(type(p_data))
+    # print(p_data)
+    for x in p_data:
+        if x['region'] not in regions:
+            regions.append(x['region'])
+
+region()
+# print(regions)
+
 @app.route("/") # assign fxn to route for home page
 def home_page():
     return render_template("index.html", user=session.get('username'))
@@ -157,7 +195,7 @@ def register_page():
 
 @app.route("/input")
 def input():
-    return render_template("input.html", user=session.get('username'))
+    return render_template("input.html", user=session.get('username'), languages=langs, regionlist=regions)
 
 @app.route("/logout")
 def logout():

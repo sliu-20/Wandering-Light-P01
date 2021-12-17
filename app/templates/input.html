@@ -47,9 +47,10 @@ time spent: ?? -->
                     <h1> Languages </h1>
                     </div>
                     <p class="card-text">
-                        <select class="form-select form-select-sm" id="subjects" name="languages" multiple>
-                            <option value="lang1">Lang1</option>
-                            <option value="lang2">Lang2</option>
+                        <select class="form-select form-select-sm" id="languages" name="languages" multiple>
+                            {% for x in languages %}
+                            <option value="lang">{{x}}</option>
+                            {% endfor %}
                         </select>
                     </p>
                 </div>
@@ -57,21 +58,17 @@ time spent: ?? -->
             <div class="card" style="background-color:var(--orange)">
                 <div class="card-body">
                     <div class="card-title">
-                    <h1> Continents </h1>
+                    <h1> Regions </h1>
                     </div>
                     <p class="card-text">
+                        {% for r in regionlist %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="Continent1">
-                            <label class="form-check-label" for="Continent1">
-                                Continent1
+                            <input class="form-check-input" type="checkbox" id="Region">
+                            <label class="form-check-label" for="Region">
+                                {{r}}
                             </label>                       
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="Continent2">
-                            <label class="form-check-label" for="Continent2">
-                                Continent2
-                            </label>
-                        </div> 
+                        {% endfor %}
                     </p>
                 </div>
             </div>
