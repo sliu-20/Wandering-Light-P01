@@ -106,3 +106,6 @@ sophieL -- 2021-12-17 9:23
 ryanW -- 2021-12-17 09:25
 - combined the code for languages and regions into api_store
 - the same langs and regions lists from before are made in api_store too
+
+roshaniS -- 2021-12-17 12:30
+- Fixed the padding on top of the navbar
