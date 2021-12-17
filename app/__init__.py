@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS SAVED (
 c.execute("""
 CREATE TABLE IF NOT EXISTS VACATIONDATA (
     COUNTRY    TEXT    NOT NULL,
+    CAPITAL    TEXT    NOT NULL,
     FORECAST   TEXT    NOT NULL,
     HOLIDAYS   TEXT    NOT NULL,
     ACTIVITY   TEXT    NOT NULL,
@@ -59,13 +60,21 @@ ssl._create_default_https_context = ssl._create_unverified_context # bypasses th
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
     db = sqlite3.connect(MAIN_DB)
     c = db.cursor()
-    url = "https://restcountries.com/v2/all?fields=name,capital"
+    # the fields are what we are interested in accessing
+    # if we want a list of names, capitals, languages, or regions, we can just access it from the table
+    url = "https://restcountries.com/v2/all?fields=name,capital,languages,region"
     data = urllib.request.urlopen(url)
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
-    print(type(p_data))
+
+    for country in p_data:
+        country["languages"] = country["languages"][0]["name"]
     print(p_data)
+
+    # inserting p_data (a list of dictionaries with name and capital)
+    # c.execute()
+
     # Ryan Wang: working on moving this list to VACATIONDATA (SQL)
 
     # print(f"p_data: \n{pdata}")
@@ -82,44 +91,6 @@ def isAlphanumerical(string):
         if not ((0x41 <= o <= 0x5A) or (0x61 <= o <= 0x7A) or (0x30 <= o <= 0x39)):
             return False;
     return True;
-
-# makes a list of languages 
-langs = []
-def lang():
-    db = sqlite3.connect(MAIN_DB)
-    c = db.cursor()
-    url = "https://restcountries.com/v2/all?fields=languages"
-    data = urllib.request.urlopen(url)
-    read_data = data.read()
-    d_data = read_data.decode('utf-8')
-    p_data = json.loads(d_data)
-    # print(type(p_data))
-    # print(p_data)
-    for x in p_data:
-        if x['languages'][0]['name'] not in langs:
-            langs.append(x['languages'][0]['name'])
-
-lang()
-# print(langs)
-
-# makes a list of regions
-regions = []
-def region():
-    db = sqlite3.connect(MAIN_DB)
-    c = db.cursor()
-    url = "https://restcountries.com/v2/all?fields=region"
-    data = urllib.request.urlopen(url)
-    read_data = data.read()
-    d_data = read_data.decode('utf-8')
-    p_data = json.loads(d_data)
-    # print(type(p_data))
-    # print(p_data)
-    for x in p_data:
-        if x['region'] not in regions:
-            regions.append(x['region'])
-
-region()
-# print(regions)
 
 @app.route("/") # assign fxn to route for home page
 def home_page():
