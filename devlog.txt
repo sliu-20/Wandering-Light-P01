@@ -99,6 +99,10 @@ roshaniS -- 2021-12-17 00:04
 - Added languages to the dropdown menu using the REST Countries API
 - Added regions to the checkboxes using the REST Countries API
 
+sophieL -- 2021-12-17 9:23
+- Added homepage.html
+- fixed typo on register.html
+
 ryanW -- 2021-12-17 09:25
 - combined the code for languages and regions into api_store
 - the same langs and regions lists from before are made in api_store too
