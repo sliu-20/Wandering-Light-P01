@@ -70,15 +70,15 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
 
     for country in p_data:
         country["languages"] = country["languages"][0]["name"]
-    print(p_data)
+    # print(p_data)
 
-    langs = [], regions = []
+    langs = []
+    regions = []
     for country in p_data:
         langs.append(country["languages"])
         regions.append(country["region"])
 
     # Ryan Wang: working on moving this list to VACATIONDATA (SQL)
-
 
     # c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES();""", p_data[0])
     # db.commit()
