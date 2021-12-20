@@ -49,7 +49,7 @@ time spent: ?? -->
                     <p class="card-text">
                         <select class="form-select form-select-sm" id="languages" name="languages" multiple>
                             {% for x in languages %}
-                            <option value="lang">{{x}}</option>
+                            <option>{{x}}</option>
                             {% endfor %}
                         </select>
                     </p>
@@ -63,7 +63,7 @@ time spent: ?? -->
                     <p class="card-text">
                         {% for r in regionlist %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="Region">
+                            <input class="form-check-input" type="checkbox" name="regions" id="Region" value="{{r}}">
                             <label class="form-check-label" for="Region">
                                 {{r}}
                             </label>                       
@@ -72,9 +72,9 @@ time spent: ?? -->
                     </p>
                 </div>
             </div>
-            <!-- <div class="d-grid gap-2">
+            <div class="d-grid gap-2">
                 <input class="btn btn-dark" type="submit" name="userinput" value="Submit">
-            </div> -->
+            </div>
         </form>
     </body>
 </html>

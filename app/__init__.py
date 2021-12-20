@@ -57,6 +57,8 @@ app.secret_key = os.urandom(32) # generates a string containing random character
 
 ssl._create_default_https_context = ssl._create_unverified_context # bypasses the 'certificate verify failed: certificate has expired' error on machines.
 
+langs = []
+regions = []
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
     db = sqlite3.connect(MAIN_DB)
     c = db.cursor()
@@ -72,11 +74,11 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
         country["languages"] = country["languages"][0]["name"]
     # print(p_data)
 
-    langs = []
-    regions = []
     for country in p_data:
-        langs.append(country["languages"])
-        regions.append(country["region"])
+        if country["languages"] not in langs:
+            langs.append(country["languages"])
+        if country["region"] not in regions:
+            regions.append(country["region"])
 
     # Ryan Wang: working on moving this list to VACATIONDATA (SQL)
 
@@ -95,7 +97,10 @@ def isAlphanumerical(string):
 
 @app.route("/") # assign fxn to route for home page
 def home_page():
-    return render_template("index.html", user=session.get('username'))
+    if 'username' in session:
+        return render_template("homepage.html", user=session.get('username'))
+    else:
+        return render_template("index.html", user=session.get('username'))
 
 @app.route("/login", methods=['GET', 'POST']) # assign fxn to route for login page
 def login_page():
@@ -114,7 +119,7 @@ def login_page():
             else:
                 if hash[0] == request.form['password']:
                     session['username'] = request.form['username']
-                    return render_template("index.html", user=session.get('username'), error = "Logged in!")
+                    return render_template("homepage.html", user=session.get('username'), error = "Logged in!")
                 else:
                      return render_template("login.html", user=session.get('username'), error="Password is incorrect")
         else:
@@ -165,9 +170,21 @@ def register_page():
     else:
         return render_template("register.html", user=session.get('username'))
 
+# page for the user to input their preferences
 @app.route("/input")
 def input():
     return render_template("input.html", user=session.get('username'), languages=langs, regionlist=regions)
+
+# page for a suggested vacation to be displayed after the user enters their preferences
+@app.route("/choose", methods=['GET', 'POST'])
+def choose():
+    # print(request.form.getlist('subjects'))
+    # print(request.form.getlist('languages'))
+    # print(request.form.getlist('regions'))
+    user_subjs = request.form.getlist('subjects')
+    user_langs = request.form.getlist('languages')
+    user_regions = request.form.getlist('regions')
+    return render_template("suggestedvacation.html", user=session.get('username'))
 
 @app.route("/logout")
 def logout():
