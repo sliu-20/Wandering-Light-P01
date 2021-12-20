@@ -177,7 +177,7 @@ def input():
 
 # page for a suggested vacation to be displayed after the user enters their preferences
 @app.route("/choose", methods=['GET', 'POST'])
-def choose():
+def suggest():
     # print(request.form.getlist('subjects'))
     # print(request.form.getlist('languages'))
     # print(request.form.getlist('regions'))
