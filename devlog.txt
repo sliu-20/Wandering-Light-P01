@@ -116,3 +116,6 @@ roshaniS -- 2021-12-19 23:30
 - Added suggestedvacation.html and filled it with basic code (will be fixed later)
 - Added suggest function to take in the input from the form on the "Questions" page (did not figure out how to use this inputted information to generate a suggestion yet). This function also directs the user to suggestedvacation.html.
 - Fixed website so that if the user is logged in, they are directed to homepage.html
+
+roshaniS -- 2021-12-20 9:25
+- Added a dropdown menu for the number of people in the "Questions" page
