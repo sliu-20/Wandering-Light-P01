@@ -130,3 +130,10 @@ jonathanW -- 2021-12-21 00:06
 - Edited the app code to account for the new selection of "Number of People" in the party when randomizing the activity to do.
 - Made the web app generate a new activity for each participant in the user's party.
 - Made the web app generate a random book to write for a given choice and if nothing is selected.
+
+jonathanW -- 2021-12-21 9:13
+- Fixed bug for retrieving book author.
+
+sophieL -- 2021-12-21 9:13
+- Added layout.html so navbar can transfer between pages.
+- Updated index.html so that it now extends layout.html (will update other pages later.)
