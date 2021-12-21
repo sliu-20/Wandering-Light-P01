@@ -111,7 +111,7 @@ roshaniS -- 2021-12-17 12:30
 - Fixed the padding on top of the navbar
 
 roshaniS -- 2021-12-19 23:30
-- Fixed the "Questions" page 
+- Fixed the "Questions" page
 - Added submit button to the "Questions" page
 - Added suggestedvacation.html and filled it with basic code (will be fixed later)
 - Added suggest function to take in the input from the form on the "Questions" page (did not figure out how to use this inputted information to generate a suggestion yet). This function also directs the user to suggestedvacation.html.
@@ -119,3 +119,9 @@ roshaniS -- 2021-12-19 23:30
 
 roshaniS -- 2021-12-20 9:25
 - Added a dropdown menu for the number of people in the "Questions" page
+
+jonathanW -- 2021-12-20 22:42
+- Added 10 book subjects to choose from within the input page.
+- Edited the app code to account for the new selection of "Number of People" in the party when randomizing the activity to do.
+- Made the web app generate a new activity for each participant in the user's party.
+- Made the web app generate a random book to write for a given choice and if nothing is selected.
