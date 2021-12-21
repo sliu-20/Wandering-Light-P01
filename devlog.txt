@@ -137,3 +137,7 @@ jonathanW -- 2021-12-21 9:13
 sophieL -- 2021-12-21 9:13
 - Added layout.html so navbar can transfer between pages.
 - Updated index.html so that it now extends layout.html (will update other pages later.)
+- Started styling the footer
+
+roshaniS -- 2021-12-21 9:24
+- Added Jinja inheritance to the other html files (they now extend layout.html)
