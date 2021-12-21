@@ -114,13 +114,18 @@ roshaniS -- 2021-12-19 23:30
 - Fixed the "Questions" page
 - Added submit button to the "Questions" page
 - Added suggestedvacation.html and filled it with basic code (will be fixed later)
-- Added suggest function to take in the input from the form on the "Questions" page (did not figure out how to use this inputted information to generate a suggestion yet). This function also directs the user to suggestedvacation.html.
+- Added suggest function to take in the input from the form on the "Questions" page (did not figure out how to use this inputted information to
+generate a suggestion yet). This function also directs the user to suggestedvacation.html.
 - Fixed website so that if the user is logged in, they are directed to homepage.html
 
 roshaniS -- 2021-12-20 9:25
 - Added a dropdown menu for the number of people in the "Questions" page
 
-jonathanW -- 2021-12-20 22:42
+roshaniS -- 2021-12-20 23:16
+- Added book subjects to the dropdown menu on the "Questions" page
+- Added variable in the suggest function to take in the input from the "Number of People" dropdown menu
+
+jonathanW -- 2021-12-21 00:06
 - Added 10 book subjects to choose from within the input page.
 - Edited the app code to account for the new selection of "Number of People" in the party when randomizing the activity to do.
 - Made the web app generate a new activity for each participant in the user's party.
