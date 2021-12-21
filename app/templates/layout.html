@@ -1,0 +1,44 @@
+<!-- Wandering Lights | Sophie Liu (Quacky), Ryan Wang (Jack), Jonathan Wu (Loki), Roshani Shrestha (Pete)
+SoftDev
+P01: ArRESTed Development
+2021-12-10
+time spent: ?? -->
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/css/style.css" />
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <!-- Allows for each child page to have a different title -->
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-light" style="background-color: var(--pink)">
+      <div class="container-fluid">
+        <span class="navbar-brand"><a href="/">Home</a></span>
+        <span class="navbar-brand">View</span>
+        <span class="navbar-brand"><a href="/input">Questions</a></span>
+        {% if user %}
+          <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
+          <span class="navbar-brand"> Hi, {{ user }} </span>
+          <span class="navbar-brand"> Randomize </span>
+        {% else %}
+          <span class="navbar-brand"> Randomize </span>
+        {% endif %}
+      </div>
+    </nav>
+    <!-- Leaves a specific space for the body content which every child template
+    can change-->
+    <content>
+      <div class="bodycontent">
+        {% block content %} {% endblock %}
+      </div>
+    </content>
+    <!-- Creates a footer which displays on the bottom of every page -->
+    <footer>
+      {% block footer %} Created by: Team Wandering Lights | Sophie Liu (Quacky), Ryan Wang (Jack), Jonathan Wu (Loki), Roshani Shrestha (Pete) {% endblock %}
+    </footer>
+  </body>
+</html>
