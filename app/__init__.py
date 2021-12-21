@@ -102,7 +102,7 @@ def pickBook(string):
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
     randBook = randint(0, len(p_data['works'])-1)
-    return "Try reading: " + p_data['works'][randBook]['title'] + " by " + p_data['works'][11]['authors'][0]['name']
+    return "Try reading: " + p_data['works'][randBook]['title'] + " by " + p_data['works'][randBook]['authors'][0]['name']
 
 def isAlphanumerical(string):
     for char in string:
