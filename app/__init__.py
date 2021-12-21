@@ -79,14 +79,30 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
             langs.append(country["languages"])
         if country["region"] not in regions:
             regions.append(country["region"])
-
-    # Ryan Wang: working on moving this list to VACATIONDATA (SQL)
-
-    # c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES();""", p_data[0])
     # db.commit()
     # db.close()
 
 api_store()
+
+def pickActivity(integer):
+    url = "https://www.boredapi.com/api/activity?participants=" + integer
+    data = urllib.request.urlopen(url)
+    read_data = data.read()
+    d_data = read_data.decode('utf-8')
+    p_data = json.loads(d_data)
+    if p_data['link'] != '':
+        return p_data['activity'] + ". Learn more at: " + p_data['link']
+    else:
+        return p_data['activity']
+
+def pickBook(string):
+    url = "http://openlibrary.org/subjects/" + string + ".json"
+    data = urllib.request.urlopen(url)
+    read_data = data.read()
+    d_data = read_data.decode('utf-8')
+    p_data = json.loads(d_data)
+    randBook = randint(0, len(p_data['works'])-1)
+    return "Try reading: " + p_data['works'][randBook]['title'] + " by " + p_data['works'][11]['authors'][0]['name']
 
 def isAlphanumerical(string):
     for char in string:
@@ -181,10 +197,19 @@ def suggest():
     # print(request.form.getlist('subjects'))
     # print(request.form.getlist('languages'))
     # print(request.form.getlist('regions'))
+    # print(request.form.getlist('people'))
+    user_party_size = request.form.getlist('people')
     user_subjs = request.form.getlist('subjects')
     user_langs = request.form.getlist('languages')
     user_regions = request.form.getlist('regions')
-    return render_template("suggestedvacation.html", user=session.get('username'))
+
+    action = pickActivity(user_party_size[0])
+    readBook = ""
+    if len(user_subjs) != 0:
+        readBook = pickBook(user_subjs[0])
+    else:
+        readBook = pickBook("young_adult")
+    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook)
 
 @app.route("/logout")
 def logout():
