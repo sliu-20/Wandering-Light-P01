@@ -11,6 +11,7 @@ import ssl
 import urllib.request
 from random import randint
 from flask import Flask, render_template, request, session, redirect
+import random
 
 MAIN_DB = "vacation.db"
 
@@ -57,6 +58,7 @@ app.secret_key = os.urandom(32) # generates a string containing random character
 
 ssl._create_default_https_context = ssl._create_unverified_context # bypasses the 'certificate verify failed: certificate has expired' error on machines.
 
+countries = []
 langs = []
 regions = []
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
@@ -79,10 +81,18 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
             langs.append(country["languages"])
         if country["region"] not in regions:
             regions.append(country["region"])
+        if country["name"] not in countries:
+            countries.append(country["name"])
     # db.commit()
     # db.close()
 
 api_store()
+
+def pickCountry():
+    random_country = random.choices(population=countries, k=1)
+    # [0] is necessary because random_country is a list with one string
+    return random_country[0]
+
 
 def pickActivity(integer):
     url = "https://www.boredapi.com/api/activity?participants=" + integer

@@ -146,3 +146,7 @@ roshaniS -- 2021-12-21 20:42
 - Added Save button to the "Suggestion" page 
 - Added view.html with initial basic code 
 - Added view function to __init__.py to direct to the "View" page
+
+ryanW -- 2021-12-21 22:20
+- Added a list of countries called countries (similar to langs and regions) populated in api_store
+- Created a function to pick a random country called pickCountry()
