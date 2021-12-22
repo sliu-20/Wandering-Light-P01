@@ -71,11 +71,10 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
-
     for country in p_data:
         country["languages"] = country["languages"][0]["name"]
     # print(p_data)
-
+    print(p_data)
     for country in p_data:
         if country["languages"] not in langs:
             langs.append(country["languages"])
@@ -239,7 +238,10 @@ def suggest():
 # page for viewing all saved vacations
 @app.route("/view", methods=['GET', 'POST'])
 def view():
-    return render_template("view.html")
+    if 'username' not in session:
+        return redirect("/login")
+    else:
+        return render_template("view.html")
 
 @app.route("/logout")
 def logout():
