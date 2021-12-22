@@ -154,3 +154,8 @@ ryanW -- 2021-12-21 22:20
 ryanW -- 2021-12-21 22:30
 - Suggestion: make Book Subjects and Languages input into a checklist like Regions is (on the /input page)
 - Note: Submit button is partially hidden at the bottom 
+
+roshaniS -- 2021-12-21 23:59
+- Fixed footer
+- Added instructions for the user on the "Questions" page
+- Added some content in the for loop of view.html, including some Jinja variables (doesn't display the saved vacations yet)
