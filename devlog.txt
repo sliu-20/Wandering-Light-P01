@@ -142,9 +142,9 @@ sophieL -- 2021-12-21 9:13
 roshaniS -- 2021-12-21 9:24
 - Added Jinja inheritance to the other html files (they now extend layout.html)
 
-roshaniS -- 2021-12-21 20:42 
-- Added Save button to the "Suggestion" page 
-- Added view.html with initial basic code 
+roshaniS -- 2021-12-21 20:42
+- Added Save button to the "Suggestion" page
+- Added view.html with initial basic code
 - Added view function to __init__.py to direct to the "View" page
 
 ryanW -- 2021-12-21 22:20
@@ -153,9 +153,14 @@ ryanW -- 2021-12-21 22:20
 
 ryanW -- 2021-12-21 22:30
 - Suggestion: make Book Subjects and Languages input into a checklist like Regions is (on the /input page)
-- Note: Submit button is partially hidden at the bottom 
+- Note: Submit button is partially hidden at the bottom
 
 roshaniS -- 2021-12-21 23:59
 - Fixed footer
 - Added instructions for the user on the "Questions" page
 - Added some content in the for loop of view.html, including some Jinja variables (doesn't display the saved vacations yet)
+
+jonathanW -- 2021-12-22 01:35
+- Changed sentence structure in the "Questions" page to more accurate reflect what the app is capable of currently.
+- Added try/except statements to the parts of the code where it needed to retrieve API data.
+- Added the selection of country into the web app and made it display onto the suggestion vacation page.
