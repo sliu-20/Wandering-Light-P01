@@ -13,17 +13,27 @@ time spent: ??
   {{ super() }}
 {% endblock %}
 {% block content %}
-    {% for v in vacations %}
-        <div class="card" style="background-color:var(--orange)">
-        <div class="card-body">
-            <p class="card-text">
-            Country: {{ v[0] }} 
-            Forecast: {{ v[1] }}
-            Holidays: {{ v[2] }}
-            Activity: {{ v[3] }}
-            Book: {{ v[4] }}
-            </p>
+    <div class="card" style="background-color:var(--orange)">
+    <div class="card-body">
+        <div class="card-title">
+        <h1> Saved Vacations! </h1>
         </div>
-        </div>
-    {% endfor %}
+        <p class="card-text">
+        These are all of your saved vacations from most recent to least recent.
+        </p>
+    </div>
+    </div>
+    <div class="card" style="background-color:var(--white)">
+    <div class="card-body">
+        <p class="card-text">
+        Country: saved country <br>
+        Forecast: saved forecast <br>
+        Holidays: saved holidays <br>
+        Activity: saved activity <br>
+        Book: saved book <br>
+        </p>
+    </div>
+    </div>
+    <!-- {% for v in vacations %} -->
+    <!-- {% endfor %} -->
 {% endblock %}

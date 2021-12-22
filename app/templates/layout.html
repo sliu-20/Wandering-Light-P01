@@ -18,9 +18,9 @@ time spent: ?? -->
     <nav class="navbar navbar-light" style="background-color: var(--pink)">
       <div class="container-fluid">
         <span class="navbar-brand"><a href="/">Home</a></span>
-        <span class="navbar-brand"><a href="/view">View</a></span>
-        <span class="navbar-brand"><a href="/input">Questions</a></span>
         {% if user %}
+          <span class="navbar-brand"><a href="/view">View</a></span>
+          <span class="navbar-brand"><a href="/input">Questions</a></span>
           <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
           <span class="navbar-brand"> Hi, {{ user }} </span>
           <span class="navbar-brand"> Randomize </span>
