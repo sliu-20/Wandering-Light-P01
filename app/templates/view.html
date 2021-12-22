@@ -14,6 +14,16 @@ time spent: ??
 {% endblock %}
 {% block content %}
     {% for v in vacations %}
-        
+        <div class="card" style="background-color:var(--orange)">
+        <div class="card-body">
+            <p class="card-text">
+            Country: {{ v[0] }} 
+            Forecast: {{ v[1] }}
+            Holidays: {{ v[2] }}
+            Activity: {{ v[3] }}
+            Book: {{ v[4] }}
+            </p>
+        </div>
+        </div>
     {% endfor %}
 {% endblock %}

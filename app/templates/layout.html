@@ -18,7 +18,7 @@ time spent: ?? -->
     <nav class="navbar navbar-light" style="background-color: var(--pink)">
       <div class="container-fluid">
         <span class="navbar-brand"><a href="/">Home</a></span>
-        <span class="navbar-brand">View</span>
+        <span class="navbar-brand"><a href="/view">View</a></span>
         <span class="navbar-brand"><a href="/input">Questions</a></span>
         {% if user %}
           <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
@@ -38,7 +38,7 @@ time spent: ?? -->
     </content>
     <!-- Creates a footer which displays on the bottom of every page -->
     <footer>
-      <div class="card">
+      <div class="container">
         {% block footer %} Created by: Team Wandering Lights | Sophie Liu (Quacky), Ryan Wang (Jack), Jonathan Wu (Loki), Roshani Shrestha (Pete) {% endblock %}
       </div>
     </footer>

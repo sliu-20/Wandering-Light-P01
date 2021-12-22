@@ -16,7 +16,17 @@ time spent: ?? -->
         <div class="card" style="background-color:var(--orange)">
             <div class="card-body">
                 <div class="card-title">
-                <h1> Number of People </h1>
+                <h1> Questions! </h1>
+                </div>
+                <p class="card-text" style="font-size: x-large;">
+                    Please enter the answers to these questions below to help us suggest an ideal vacation for you!
+                </p>
+            </div>
+        </div>
+        <div class="card" style="background-color:var(--white)">
+            <div class="card-body">
+                <div class="card-title">
+                <h1> Number of People in Your Party? </h1>
                 </div>
                 <p class="card-text">
                     <select class="form-select form-select-sm" id="people" name="people">
@@ -28,10 +38,10 @@ time spent: ?? -->
                 </p>
             </div>
         </div>
-        <div class="card" style="background-color:var(--white)">
+        <div class="card" style="background-color:var(--orange)">
             <div class="card-body">
                 <div class="card-title">
-                <h1> Book Subjects </h1>
+                <h1> Book Subjects You're Interested In? </h1>
                 </div>
                 <p class="card-text">
                     <select class="form-select form-select-sm" id="subjects" name="subjects" multiple>
@@ -49,10 +59,10 @@ time spent: ?? -->
                 </p>
             </div>
         </div>
-        <div class="card" style="background-color:var(--orange)">
+        <div class="card" style="background-color:var(--white)">
             <div class="card-body">
                 <div class="card-title">
-                <h1> Languages </h1>
+                <h1> Languages You Know? </h1>
                 </div>
                 <p class="card-text">
                     <select class="form-select form-select-sm" id="languages" name="languages" multiple>
@@ -63,10 +73,10 @@ time spent: ?? -->
                 </p>
             </div>
         </div>
-        <div class="card" style="background-color:var(--white)">
+        <div class="card" style="background-color:var(--orange)">
             <div class="card-body">
                 <div class="card-title">
-                <h1> Regions </h1>
+                <h1> Regions You'd Like to Visit? </h1>
                 </div>
                 <p class="card-text">
                     {% for r in regionlist %}
