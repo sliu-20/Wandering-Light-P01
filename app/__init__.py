@@ -88,31 +88,43 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
 
 api_store()
 
-def pickCountry():
-    random_country = random.choices(population=countries, k=1)
-    # [0] is necessary because random_country is a list with one string
-    return random_country[0]
+def pickCountry(subjectList, regionList):
+    try:
+        if len(subjectList) == 0 and len(regionList) == 0:
+            random_country = random.choices(population=countries, k=1)
+            # [0] is necessary because random_country is a list with one string
+            return "You should go to: " + random_country[0]
+        else:
+            return "still in development phase, come back later"
+    except:
+        return "An unknown error with the API occurred. Vacation Time apologizes."
 
 
 def pickActivity(integer):
-    url = "https://www.boredapi.com/api/activity?participants=" + integer
-    data = urllib.request.urlopen(url)
-    read_data = data.read()
-    d_data = read_data.decode('utf-8')
-    p_data = json.loads(d_data)
-    if p_data['link'] != '':
-        return p_data['activity'] + ". Learn more at: " + p_data['link']
-    else:
-        return p_data['activity']
+    try:
+        url = "https://www.boredapi.com/api/activity?participants=" + integer
+        data = urllib.request.urlopen(url)
+        read_data = data.read()
+        d_data = read_data.decode('utf-8')
+        p_data = json.loads(d_data)
+        if p_data['link'] != '':
+            return p_data['activity'] + ". Learn more at: " + p_data['link']
+        else:
+            return p_data['activity']
+    except:
+        return "An unknown error with the API occurred. Vacation Time apologizes."
 
 def pickBook(string):
-    url = "http://openlibrary.org/subjects/" + string + ".json"
-    data = urllib.request.urlopen(url)
-    read_data = data.read()
-    d_data = read_data.decode('utf-8')
-    p_data = json.loads(d_data)
-    randBook = randint(0, len(p_data['works'])-1)
-    return "Try reading: " + p_data['works'][randBook]['title'] + " by " + p_data['works'][randBook]['authors'][0]['name']
+    try:
+        url = "http://openlibrary.org/subjects/" + string + ".json"
+        data = urllib.request.urlopen(url)
+        read_data = data.read()
+        d_data = read_data.decode('utf-8')
+        p_data = json.loads(d_data)
+        randBook = randint(0, len(p_data['works'])-1)
+        return "Try reading: " + p_data['works'][randBook]['title'] + " by " + p_data['works'][randBook]['authors'][0]['name']
+    except:
+        return "An unknown error with the API occurred. Vacation Time apologizes."
 
 def isAlphanumerical(string):
     for char in string:
@@ -220,7 +232,9 @@ def suggest():
         readBook = pickBook(user_subjs[0])
     else:
         readBook = pickBook("young_adult")
-    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook)
+    countrySelection = pickCountry(user_subjs, user_regions)
+    print(countrySelection)
+    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection)
 
 # page for viewing all saved vacations
 @app.route("/view", methods=['GET', 'POST'])
