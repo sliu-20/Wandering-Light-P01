@@ -150,3 +150,7 @@ roshaniS -- 2021-12-21 20:42
 ryanW -- 2021-12-21 22:20
 - Added a list of countries called countries (similar to langs and regions) populated in api_store
 - Created a function to pick a random country called pickCountry()
+
+ryanW -- 2021-12-21 22:30
+- Suggestion: make Book Subjects and Languages input into a checklist like Regions is (on the /input page)
+- Note: Submit button is partially hidden at the bottom 
