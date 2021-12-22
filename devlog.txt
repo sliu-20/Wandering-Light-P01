@@ -16,32 +16,32 @@ jonathanW -- 2021-12-09 22:25
 [x] Moved the component map to the beginning
 [x] Added in databases for storing data like usernames and text
 
-roshaniS -- 2021-12-10 9:00
+roshaniS -- 2021-12-10 09:00
 - Updated summary on the readme file
 - Created requirements.txt
 - Added launch codes
 
-sophieL - 2021-12-10 9:21
+sophieL - 2021-12-10 09:21
 - added header to __init__.py and index.html
 - added basic html framework to index.html
 
 jonathanW -- 2021-12-10 9:22
 - added base skeleton code for the app (__init__.py)
 
-roshaniS -- 2021-12-10 9:24
+roshaniS -- 2021-12-10 09:24
 - Added login.html and some basic code
 
 roshaniS -- 2021-12-10 12:10
 - Updated login.html with some more Bootstrap to make the page look better
 - Fixed the submit button
 
-jonathanW -- 2021-12-13 9:14
+jonathanW -- 2021-12-13 09:14
 - Started to work on adding APIs to the database, and I started with all the countries and their capitals.
 
 ryanW -- 2021-12-13 19:51
 - Discovered a bug in c.execute("""INSERT INTO VACATIONDATA (COUNTRY) VALUES (?);""", p_data) because p_data isn't 1 thing
 
-sophieL -- 2021-12-14 9:11
+sophieL -- 2021-12-14 09:11
 - added color scheme variables to index.html
 - added a Vacation Time summary card
 
@@ -65,7 +65,7 @@ sophieL -- 2021-12-14 22:23
 jonathanW -- 2021-12-14 23:44
 - added more code to the __init__.py. I added function routes to the login and register page as well as a new table for storing the API data that was retrived.
 
-jonathanW -- 2021-12-15 9:15
+jonathanW -- 2021-12-15 09:15
 - started working on register function to verify and process username/password system.
 
 roshaniS -- 2021-12-15 11:36
@@ -99,7 +99,7 @@ roshaniS -- 2021-12-17 00:04
 - Added languages to the dropdown menu using the REST Countries API
 - Added regions to the checkboxes using the REST Countries API
 
-sophieL -- 2021-12-17 9:23
+sophieL -- 2021-12-17 09:23
 - Added homepage.html
 - fixed typo on register.html
 
@@ -118,7 +118,7 @@ roshaniS -- 2021-12-19 23:30
 generate a suggestion yet). This function also directs the user to suggestedvacation.html.
 - Fixed website so that if the user is logged in, they are directed to homepage.html
 
-roshaniS -- 2021-12-20 9:25
+roshaniS -- 2021-12-20 09:25
 - Added a dropdown menu for the number of people in the "Questions" page
 
 roshaniS -- 2021-12-20 23:16
@@ -131,15 +131,15 @@ jonathanW -- 2021-12-21 00:06
 - Made the web app generate a new activity for each participant in the user's party.
 - Made the web app generate a random book to write for a given choice and if nothing is selected.
 
-jonathanW -- 2021-12-21 9:13
+jonathanW -- 2021-12-21 09:13
 - Fixed bug for retrieving book author.
 
-sophieL -- 2021-12-21 9:13
+sophieL -- 2021-12-21 09:13
 - Added layout.html so navbar can transfer between pages.
 - Updated index.html so that it now extends layout.html (will update other pages later.)
 - Started styling the footer
 
-roshaniS -- 2021-12-21 9:24
+roshaniS -- 2021-12-21 09:24
 - Added Jinja inheritance to the other html files (they now extend layout.html)
 
 roshaniS -- 2021-12-21 20:42
@@ -168,5 +168,11 @@ jonathanW -- 2021-12-22 01:35
 jonathanW -- 2021-12-22 09:21
 - Changed the view page to redirect the user if they aren't logged in.
 
-sophieL -- 2021-12-22 9:21
+sophieL -- 2021-12-22 09:21
 - Changed the footer to a navbar placed at the bottom so that it no longer blocks text elements on the page. 
+
+roshaniS -- 2021-12-22 09:25
+- Fixed tabs on navbar so that they only appear and work when the user is logged in
+- Added instructions on the "Questions" page
+- Edited style of the "View" page
+- Fixed button on homepage.html so that it directs the user to the "View" page 
