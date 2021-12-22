@@ -212,6 +212,11 @@ def suggest():
         readBook = pickBook("young_adult")
     return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook)
 
+# page for viewing all saved vacations
+@app.route("/view", methods=['GET', 'POST'])
+def view():
+    return render_template("view.html")
+
 @app.route("/logout")
 def logout():
     session.pop('username', default=None)
