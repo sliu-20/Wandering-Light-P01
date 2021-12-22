@@ -164,3 +164,9 @@ jonathanW -- 2021-12-22 01:35
 - Changed sentence structure in the "Questions" page to more accurate reflect what the app is capable of currently.
 - Added try/except statements to the parts of the code where it needed to retrieve API data.
 - Added the selection of country into the web app and made it display onto the suggestion vacation page.
+
+jonathanW -- 2021-12-22 09:21
+- Changed the view page to redirect the user if they aren't logged in.
+
+sophieL -- 2021-12-22 9:21
+- Changed the footer to a navbar placed at the bottom so that it no longer blocks text elements on the page. 
