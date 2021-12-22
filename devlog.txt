@@ -141,3 +141,8 @@ sophieL -- 2021-12-21 9:13
 
 roshaniS -- 2021-12-21 9:24
 - Added Jinja inheritance to the other html files (they now extend layout.html)
+
+roshaniS -- 2021-12-21 20:42 
+- Added Save button to the "Suggestion" page 
+- Added view.html with initial basic code 
+- Added view function to __init__.py to direct to the "View" page
