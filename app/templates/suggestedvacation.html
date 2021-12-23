@@ -68,9 +68,11 @@ time spent: ??
         </div>
         </div>
     </div>
-    <form action = "view" method = "POST">
-        <div class="d-grid gap-2">
-            <input class="btn btn-dark" type="submit" name="userinput" value="Save">
-        </div>
-    </form>
+    {% if user %}
+        <form action = "view" method = "POST">
+            <div class="d-grid gap-2">
+                <input class="btn btn-dark" type="submit" name="userinput" value="Save">
+            </div>
+        </form>
+    {% endif %}
 {% endblock %}

@@ -13,6 +13,7 @@ time spent: ??
   {{ super() }}
 {% endblock %}
 {% block content %}
+{% for v in vacations %}
     <div class="card" style="background-color:var(--orange)">
     <div class="card-body">
         <div class="card-title">
@@ -26,14 +27,13 @@ time spent: ??
     <div class="card" style="background-color:var(--white)">
     <div class="card-body">
         <p class="card-text">
-        Country: {{ country }}<br>
+        Country: {{ v[0] }}<br>
         Forecast: saved forecast <br>
         Holidays: saved holidays <br>
-        Activity: {{ activity }} <br>
-        Book: {{ book }} <br>
+        Activity: {{ v[2] }} <br>
+        Book: {{ v[1] }} <br>
         </p>
     </div>
     </div>
-    <!-- {% for v in vacations %} -->
-    <!-- {% endfor %} -->
+{% endfor %}
 {% endblock %}

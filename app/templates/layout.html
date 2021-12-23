@@ -25,10 +25,12 @@ time spent: ?? -->
           <span class="navbar-brand"> Hi, {{ user }} </span>
           <span class="navbar-brand"><a href="randomize"> Randomize </a></span>
         {% else %}
+          <span class="navbar-brand"><a href="/login">Login</a></span>
           <span class="navbar-brand"><a href="randomize"> Randomize </a></span>
         {% endif %}
       </div>
     </nav>
+    <br>
     <!-- Leaves a specific space for the body content which every child template
     can change-->
     <content>
