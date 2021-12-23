@@ -169,10 +169,18 @@ jonathanW -- 2021-12-22 09:21
 - Changed the view page to redirect the user if they aren't logged in.
 
 sophieL -- 2021-12-22 09:21
-- Changed the footer to a navbar placed at the bottom so that it no longer blocks text elements on the page. 
+- Changed the footer to a navbar placed at the bottom so that it no longer blocks text elements on the page.
 
 roshaniS -- 2021-12-22 09:25
 - Fixed tabs on navbar so that they only appear and work when the user is logged in
 - Added instructions on the "Questions" page
 - Edited style of the "View" page
-- Fixed button on homepage.html so that it directs the user to the "View" page 
+- Fixed button on homepage.html so that it directs the user to the "View" page
+
+jonathanW -- 2021-12-23 1:18
+- Added more session redirections if they are not logged in and try to access the page via the url bar.
+- Edited the homepage to accurately reflect the actual factors that go into randomzing.
+- Added a randomizing route
+- Added capitals to the country that the website suggests
+- Added some functionality to saving vacation data things
+- Rerouted some things in the HTML to the correct places.
