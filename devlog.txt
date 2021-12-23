@@ -177,7 +177,7 @@ roshaniS -- 2021-12-22 09:25
 - Edited style of the "View" page
 - Fixed button on homepage.html so that it directs the user to the "View" page
 
-jonathanW -- 2021-12-23 1:18
+jonathanW -- 2021-12-23 01:18
 - Added more session redirections if they are not logged in and try to access the page via the url bar.
 - Edited the homepage to accurately reflect the actual factors that go into randomzing.
 - Added a randomizing route
@@ -185,8 +185,13 @@ jonathanW -- 2021-12-23 1:18
 - Added some functionality to saving vacation data things
 - Rerouted some things in the HTML to the correct places.
 
-jonathanW -- 2021-12-23 9:18
+jonathanW -- 2021-12-23 09:18
 - Added error messages to pages that are redirected.
 
-sophieL -- 2021-12-23 9:19
+sophieL -- 2021-12-23 09:19
 - Changed the index.html page to be more accurate. 
+
+roshaniS -- 2021-12-23 09:23
+- Added login tab to the navbar if the user isn't logged in
+- Edited the "View" page (doesn't work yet)
+- Added an if block in suggestedvacation.html to make the Save button only visible to those who are logged in
