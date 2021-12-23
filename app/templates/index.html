@@ -18,19 +18,26 @@ time spent: ?? -->
         </div>
         <p class="card-text">
           Vacation Time is a website dedicated to providing suggestions on vacation time, places, and activities based on user preferences.
-          The user is first directed to a login page where they can either log in to their account or press the register button to register a new account.
-          After logging in, the user is directed to a home page, where they can input and submit information to get a vacation idea. Not inputting any information and submitting would completely randomize the idea given.
-          The user can save any vacation ideas they like and view these saved ideas in a separate page.
+          Hit the randomize button to automatically generate your vacation.
+          <br>
+          Login to access the ability to customize your vacation with factors and to save a vacation for later viewing.
         </p>
       </div>
     </div>
+    <br>
+    <div class="d-grid gap-2 col-9 mx-auto">
+      <a href="/randomize" class="btn" style="background-color:var(--white)">
+        Start randomizing your vacation!
+      </a>
+    </div>
+    <br>
     <div class="card" style="background-color:var(--white)">
       <div class="card-body">
         <div class="card-title">
           <h1> Factors </h1>
         </div>
         <p class="card-text">
-          We randomize your vacation time interests based on five different things:
+          Customize your vacation time interests with four different things:
         </p>
         <div class="list-group list-group-numbered">
           <li class="list-group-item"> LANGUAGE </li>
@@ -60,4 +67,5 @@ time spent: ?? -->
        </a>
       </button>
     </form>
+
   {% endblock %}
