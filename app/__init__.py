@@ -23,22 +23,11 @@ c = db.cursor()
 c.execute("""
 CREATE TABLE IF NOT EXISTS SAVED (
     USERID     INTEGER,
-    COUNTRY    TEXT    NOT NULL,
-    FORECAST   TEXT    NOT NULL,
-    HOLIDAYS   TEXT    NOT NULL,
-    ACTIVITY   TEXT    NOT NULL,
-    BOOKS      TEXT    NOT NULL
-);""")
-
-# Storing data table creation
-c.execute("""
-CREATE TABLE IF NOT EXISTS VACATIONDATA (
-    COUNTRY    TEXT    NOT NULL,
-    CAPITAL    TEXT    NOT NULL,
-    FORECAST   TEXT    NOT NULL,
-    HOLIDAYS   TEXT    NOT NULL,
-    ACTIVITY   TEXT    NOT NULL,
-    BOOKS      TEXT    NOT NULL
+    COUNTRY    TEXT    ,
+    FORECAST   TEXT    ,
+    HOLIDAYS   TEXT    ,
+    ACTIVITY   TEXT    ,
+    BOOKS      TEXT
 );""")
 
 # User/password table creation
@@ -58,9 +47,13 @@ app.secret_key = os.urandom(32) # generates a string containing random character
 
 ssl._create_default_https_context = ssl._create_unverified_context # bypasses the 'certificate verify failed: certificate has expired' error on machines.
 
-countries = []
 langs = []
 regions = []
+countries = []
+capital = []
+countriesCapital = dict()
+tempData = dict()
+
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
     db = sqlite3.connect(MAIN_DB)
     c = db.cursor()
@@ -74,7 +67,6 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     for country in p_data:
         country["languages"] = country["languages"][0]["name"]
     # print(p_data)
-    print(p_data)
     for country in p_data:
         if country["languages"] not in langs:
             langs.append(country["languages"])
@@ -82,17 +74,19 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
             regions.append(country["region"])
         if country["name"] not in countries:
             countries.append(country["name"])
+        if country['capital'] not in capital:
+            capital.append(country["capital"])
+        countriesCapital.update({country["name"] : country["capital"]})
     # db.commit()
     # db.close()
 
 api_store()
-
 def pickCountry(subjectList, regionList):
     try:
         if len(subjectList) == 0 and len(regionList) == 0:
             random_country = random.choices(population=countries, k=1)
             # [0] is necessary because random_country is a list with one string
-            return "You should go to: " + random_country[0]
+            return "You should go to the capital " + countriesCapital.get(random_country[0]) + " in " + random_country[0]
         else:
             return "still in development phase, come back later"
     except:
@@ -210,29 +204,50 @@ def register_page():
 # page for the user to input their preferences
 @app.route("/input")
 def input():
-    return render_template("input.html", user=session.get('username'), languages=langs, regionlist=regions)
+    if 'username' not in session:
+        return redirect("/")
+    else:
+        return render_template("input.html", user=session.get('username'), languages=langs, regionlist=regions)
 
 # page for a suggested vacation to be displayed after the user enters their preferences
 @app.route("/choose", methods=['GET', 'POST'])
 def suggest():
-    # print(request.form['people'])
-    # print(request.form.getlist('subjects'))
-    # print(request.form.getlist('languages'))
-    # print(request.form.getlist('regions'))
-    # print(request.form.getlist('people'))
-    user_party_size = request.form.getlist('people')
-    user_subjs = request.form.getlist('subjects')
-    user_langs = request.form.getlist('languages')
-    user_regions = request.form.getlist('regions')
-
-    action = pickActivity(user_party_size[0])
-    readBook = ""
-    if len(user_subjs) != 0:
-        readBook = pickBook(user_subjs[0])
+    if 'username' not in session:
+        return redirect("/")
     else:
-        readBook = pickBook("young_adult")
-    countrySelection = pickCountry(user_subjs, user_regions)
-    print(countrySelection)
+        # print(request.form['people'])
+        # print(request.form.getlist('subjects'))
+        # print(request.form.getlist('languages'))
+        # print(request.form.getlist('regions'))
+        # print(request.form.getlist('people'))
+        user_party_size = request.form.getlist('people')
+        user_subjs = request.form.getlist('subjects')
+        user_langs = request.form.getlist('languages')
+        user_regions = request.form.getlist('regions')
+
+        action = ""
+        if len(user_party_size) != 0:
+            action = pickActivity(user_party_size[0])
+        else:
+            action = pickActivity("1")
+        readBook = ""
+        if len(user_subjs) != 0:
+            readBook = pickBook(user_subjs[0])
+        else:
+            readBook = pickBook("young_adult")
+        countrySelection = pickCountry(user_subjs, user_regions)
+        print(countrySelection)
+        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection)
+
+# page for a randomized vacation idea
+@app.route("/randomize", methods=['GET', 'POST'])
+def randomize():
+    action = pickActivity("1")
+    tempData.update({'ACTIVITY' : action})
+    readBook = pickBook("young_adult")
+    tempData.update({'BOOKS' : readBook})
+    countrySelection = pickCountry([],[])
+    tempData.update({"COUNTRY" : countrySelection})
     return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection)
 
 # page for viewing all saved vacations
@@ -241,7 +256,16 @@ def view():
     if 'username' not in session:
         return redirect("/login")
     else:
-        return render_template("view.html")
+        if request.method == "POST":
+            db = sqlite3.connect(MAIN_DB)
+            c = db.cursor()
+            countrySelection = tempData.get("COUNTRY")
+            readBook = tempData.get("BOOKS")
+            action = tempData.get("ACTIVITY")
+            c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY) VALUES (?, ?, ?);""", ((countrySelection, readBook, action,)))
+            db.commit()
+            db.close()
+        return render_template("view.html", country = countrySelection, book = readBook, activity = action)
 
 @app.route("/logout")
 def logout():
