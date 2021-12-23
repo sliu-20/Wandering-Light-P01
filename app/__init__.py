@@ -53,6 +53,7 @@ countries = []
 capital = []
 countriesCapital = dict()
 tempData = dict()
+tempErrorMessage = []
 
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
     db = sqlite3.connect(MAIN_DB)
@@ -156,7 +157,10 @@ def login_page():
         else:
             return render_template("login.html", user=session.get('username'), error="An error occurred. Please try logging in again.")
     else:
-        return render_template("login.html", user=session.get('username'))
+        if len(tempErrorMessage) != 0:
+            return render_template("login.html", user=session.get('username'), error = tempErrorMessage.pop(0))
+        else:
+            return render_template("login.html", user=session.get('username'))
 
 @app.route("/register", methods=['GET', 'POST']) # assign fxn to route for register page
 def register_page():
@@ -254,6 +258,7 @@ def randomize():
 @app.route("/view", methods=['GET', 'POST'])
 def view():
     if 'username' not in session:
+        tempErrorMessage.append("You must be logged in to view and save these ideas.")
         return redirect("/login")
     else:
         if request.method == "POST":

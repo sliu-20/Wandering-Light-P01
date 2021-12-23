@@ -184,3 +184,9 @@ jonathanW -- 2021-12-23 1:18
 - Added capitals to the country that the website suggests
 - Added some functionality to saving vacation data things
 - Rerouted some things in the HTML to the correct places.
+
+jonathanW -- 2021-12-23 9:18
+- Added error messages to pages that are redirected.
+
+sophieL -- 2021-12-23 9:19
+- Changed the index.html page to be more accurate. 
