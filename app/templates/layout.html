@@ -21,11 +21,11 @@ time spent: ?? -->
         {% if user %}
           <span class="navbar-brand"><a href="/view">View</a></span>
           <span class="navbar-brand"><a href="/input">Questions</a></span>
-          <span class="navbar-brand"> <a href="/logout"> Logout </a> </span>
+          <span class="navbar-brand"><a href="/logout"> Logout </a> </span>
           <span class="navbar-brand"> Hi, {{ user }} </span>
-          <span class="navbar-brand"> Randomize </span>
+          <span class="navbar-brand"><a href="randomize"> Randomize </a></span>
         {% else %}
-          <span class="navbar-brand"> Randomize </span>
+          <span class="navbar-brand"><a href="randomize"> Randomize </a></span>
         {% endif %}
       </div>
     </nav>
