@@ -195,3 +195,8 @@ roshaniS -- 2021-12-23 09:23
 - Added login tab to the navbar if the user isn't logged in
 - Edited the "View" page (doesn't work yet)
 - Added an if block in suggestedvacation.html to make the Save button only visible to those who are logged in
+
+roshaniS -- 2021-12-27 20:10
+- Added forecast and holidays to the page that displays the randomized suggested vacation 
+- Added the text files with the api keys for the Weather API and Abstract Public Holidays API
+- Right now, it only displays London's forecast and the United States' holidays, but we will fix it later
