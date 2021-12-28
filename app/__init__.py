@@ -93,6 +93,38 @@ def pickCountry(subjectList, regionList):
     except:
         return "An unknown error with the API occurred. Vacation Time apologizes."
 
+def getForecast(capital):
+    try:
+        f = open("keys/key_api0.txt", "r")
+        api_key = f.read()
+        url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital 
+        data = urllib.request.urlopen(url)
+        read_data = data.read()
+        d_data = read_data.decode('utf-8')
+        p_data = json.loads(d_data)
+        return "Temperature: " + str(p_data['current']['temp_c']) + " ºC (" \
+                + str(p_data['current']['temp_f']) + " ºF)\nFeels like: " + str(p_data['current']['feelslike_c']) \
+                + " ºC (" + str(p_data['current']['feelslike_f']) + " ºF)\nHumidity: " + str(p_data['current']['humidity'])
+    except:
+        return "An unknown error with the API occurred. Vacation Time apologizes."
+
+def getHolidays(country):
+    try:
+        f = open("keys/key_api1.txt", "r")
+        api_key = f.read()
+        url = "https://holidays.abstractapi.com/v1/?api_key=" + api_key + "&country=" + country + "&year=2020"
+        data = urllib.request.urlopen(url)
+        read_data = data.read()
+        d_data = read_data.decode('utf-8')
+        p_data = json.loads(d_data)
+        display = ""
+        for i in range(len(p_data)):
+            display += p_data[i]['name']
+            if i < len(p_data) - 1:
+                display += ", "
+        return display
+    except:
+        return "An unknown error with the API occurred. Vacation Time apologizes."
 
 def pickActivity(integer):
     try:
@@ -252,7 +284,11 @@ def randomize():
     tempData.update({'BOOKS' : readBook})
     countrySelection = pickCountry([],[])
     tempData.update({"COUNTRY" : countrySelection})
-    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection)
+    displayForecast = getForecast("London")
+    tempData.update({"FORECAST" : displayForecast}) # add capital to tempdata in pickcountry?
+    displayHolidays = getHolidays("US")
+    tempData.update({"HOLIDAYS" : displayHolidays})
+    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
 
 # page for viewing all saved vacations
 @app.route("/view", methods=['GET', 'POST'])
