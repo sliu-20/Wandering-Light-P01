@@ -87,7 +87,7 @@ def pickCountry(subjectList, regionList):
         if len(subjectList) == 0 and len(regionList) == 0:
             random_country = random.choices(population=countries, k=1)
             # [0] is necessary because random_country is a list with one string
-            return "You should go to the capital " + countriesCapital.get(random_country[0]) + " in " + random_country[0]
+            return random_country[0]
         else:
             return "still in development phase, come back later"
     except:
@@ -272,8 +272,15 @@ def suggest():
         else:
             readBook = pickBook("young_adult")
         countrySelection = pickCountry(user_subjs, user_regions)
-        print(countrySelection)
-        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection)
+        # print(countrySelection)
+        displayHolidays = getHolidays("US")
+        try:
+            cap = countriesCapital.get(countrySelection)
+            displayForecast = getForecast(countriesCapital.get(countrySelection))
+            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
+        except:
+            displayForecast = "No location to obtain forecast from."
+            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
 
 # page for a randomized vacation idea
 @app.route("/randomize", methods=['GET', 'POST'])
@@ -284,11 +291,17 @@ def randomize():
     tempData.update({'BOOKS' : readBook})
     countrySelection = pickCountry([],[])
     tempData.update({"COUNTRY" : countrySelection})
-    displayForecast = getForecast("London")
-    tempData.update({"FORECAST" : displayForecast}) # add capital to tempdata in pickcountry?
     displayHolidays = getHolidays("US")
     tempData.update({"HOLIDAYS" : displayHolidays})
-    return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
+    try:
+        cap = countriesCapital.get(countrySelection)
+        displayForecast = getForecast(countriesCapital.get(countrySelection))
+        tempData.update({"FORECAST" : displayForecast})
+        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
+    except:
+        displayForecast = "No location to obtain forecast from."
+        tempData.update({"FORECAST" : displayForecast})
+        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
 
 # page for viewing all saved vacations
 @app.route("/view", methods=['GET', 'POST'])
@@ -303,11 +316,16 @@ def view():
             countrySelection = tempData.get("COUNTRY")
             readBook = tempData.get("BOOKS")
             action = tempData.get("ACTIVITY")
-            c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY) VALUES (?, ?, ?);""", ((countrySelection, readBook, action,)))
+            forecast = tempData.get("FORECAST")
+            holidays = tempData.get("HOLIDAYS")
+            c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?);""", ((countrySelection, readBook, action, forecast, holidays)))
+            # c.execute("""SELECT * FROM SAVED;""")
+            # saved = c.fetchall()
+            # print(saved)
             db.commit()
             db.close()
+        # return render_template("view.html", country = saved['COUNTRY'], book = saved['BOOKS'], activity = saved['ACTIVITY'])
         return render_template("view.html", country = countrySelection, book = readBook, activity = action)
-
 @app.route("/logout")
 def logout():
     session.pop('username', default=None)
