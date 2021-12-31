@@ -200,3 +200,7 @@ roshaniS -- 2021-12-27 20:10
 - Added forecast and holidays to the page that displays the randomized suggested vacation 
 - Added the text files with the api keys for the Weather API and Abstract Public Holidays API
 - Right now, it only displays London's forecast and the United States' holidays, but we will fix it later
+
+roshaniS -- 2021-12-31 00:02
+- Fixed it so that it displays the appropriate forecast when suggesting a vacation
+- Worked on "View" page (still doesn't work)
