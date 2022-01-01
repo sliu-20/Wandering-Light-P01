@@ -54,42 +54,68 @@ capital = []
 countriesCapital = dict()
 tempData = dict()
 tempErrorMessage = []
+subjs = ["young_adult", "fantasy", "thriller", "literary_fiction", "science_fiction", "romance", "historical", "memoir", "narrative", "history"]
 
 def api_store(): # accesses the apis and stores the data into the VACATIONDATA table
     db = sqlite3.connect(MAIN_DB)
     c = db.cursor()
-    # the fields are what we are interested in accessing
-    # if we want a list of names, capitals, languages, or regions, we can just access it from the table
+    try:
+        # the fields are what we are interested in accessing
+        # if we want a list of names, capitals, languages, or regions, we can just access it from the table
+        url = "https://restcountries.com/v2/all?fields=name,capital,languages,region"
+        data = urllib.request.urlopen(url)
+        read_data = data.read()
+        d_data = read_data.decode('utf-8')
+        p_data = json.loads(d_data)
+        # for country in p_data:
+        #     country["languages"] = country["languages"][0]["name"]
+        # print(p_data)
+        for country in p_data:
+            for lang in country["languages"]:
+                if lang["name"] not in langs:
+                    langs.append(lang["name"])
+            if country["region"] not in regions:
+                regions.append(country["region"])
+            if country["name"] not in countries:
+                countries.append(country["name"])
+            if country['capital'] not in capital:
+                capital.append(country["capital"])
+            countriesCapital.update({country["name"] : country["capital"]})
+    except:
+        country = country
+    # db.commit()
+    # db.close()
+
+api_store()
+
+pickfrom = []
+def sortCountries(langList, regionList):
     url = "https://restcountries.com/v2/all?fields=name,capital,languages,region"
     data = urllib.request.urlopen(url)
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
     for country in p_data:
-        country["languages"] = country["languages"][0]["name"]
-    # print(p_data)
-    for country in p_data:
-        if country["languages"] not in langs:
-            langs.append(country["languages"])
-        if country["region"] not in regions:
-            regions.append(country["region"])
-        if country["name"] not in countries:
-            countries.append(country["name"])
-        if country['capital'] not in capital:
-            capital.append(country["capital"])
-        countriesCapital.update({country["name"] : country["capital"]})
-    # db.commit()
-    # db.close()
+        if country['region'] in regionList:
+            for lang in country['languages']:
+                if lang['name'] in langList:
+                    pickfrom.append(country['name'])
+                    break
+    return pickfrom
 
-api_store()
-def pickCountry(subjectList, regionList):
+def pickCountry(langList, regionList):
     try:
-        if len(subjectList) == 0 and len(regionList) == 0:
+        if len(langList) == 0 and len(regionList) == 0:
             random_country = random.choices(population=countries, k=1)
             # [0] is necessary because random_country is a list with one string
             return random_country[0]
         else:
-            return "still in development phase, come back later"
+            pickfrom = sortCountries(langList, regionList)
+            if pickfrom:
+                random_country = random.choices(pickfrom, k=1)
+                return random_country[0]
+            else:
+                return "There is no country available with the language and region choices you picked."
     except:
         return "An unknown error with the API occurred. Vacation Time apologizes."
 
@@ -268,26 +294,28 @@ def suggest():
             action = pickActivity("1")
         readBook = ""
         if len(user_subjs) != 0:
-            readBook = pickBook(user_subjs[0])
+            rand_subj = random.choices(user_subjs, k=1)
+            readBook = pickBook(rand_subj[0])
         else:
-            readBook = pickBook("young_adult")
-        countrySelection = pickCountry(user_subjs, user_regions)
+            rand_subj = random.choices(subjs, k=1)
+            readBook = pickBook(rand_subj[0])
+        countrySelection = pickCountry(user_langs, user_regions)
         # print(countrySelection)
         displayHolidays = getHolidays("US")
-        try:
-            cap = countriesCapital.get(countrySelection)
+        cap = countriesCapital.get(countrySelection)
+        if cap is not None:
             displayForecast = getForecast(countriesCapital.get(countrySelection))
-            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
-        except:
+        else:
             displayForecast = "No location to obtain forecast from."
-            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
+        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
 
 # page for a randomized vacation idea
 @app.route("/randomize", methods=['GET', 'POST'])
 def randomize():
     action = pickActivity("1")
     tempData.update({'ACTIVITY' : action})
-    readBook = pickBook("young_adult")
+    rand_subj = random.choices(subjs, k=1)
+    readBook = pickBook(rand_subj[0])
     tempData.update({'BOOKS' : readBook})
     countrySelection = pickCountry([],[])
     tempData.update({"COUNTRY" : countrySelection})

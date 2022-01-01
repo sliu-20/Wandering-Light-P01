@@ -20,7 +20,7 @@ time spent: ??
             <h1> COUNTRY </h1>
             </div>
             <p class="card-text">
-                {% if country == "still in development phase, come back later" or country == "An unknown error with the API occurred. Vacation Time apologizes." %}
+                {% if country == "There is no country available with the language and region choices you picked." or country == "An unknown error with the API occurred. Vacation Time apologizes." %}
                 {{country}}
                 {% else %}
                 You should go to the capital {{capital}} in {{country}}
