@@ -204,3 +204,10 @@ roshaniS -- 2021-12-27 20:10
 roshaniS -- 2021-12-31 00:02
 - Fixed it so that it displays the appropriate forecast when suggesting a vacation
 - Worked on "View" page (still doesn't work)
+
+roshaniS -- 2022-01-01 18:09
+- Fixed book suggestion so that a wider range of books can be chosen
+- Fixed languages so that all languages could be captured (previously only looked at the first language in each country)
+- Fixed the vacation suggestions that utilize user input so that the country is representative of languages and regions chosen (if no country fits, 
+a message is displayed stating this)
+- Fixed message that is displayed when there is no location to obtain the forecast from
