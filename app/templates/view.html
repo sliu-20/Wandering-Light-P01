@@ -13,25 +13,25 @@ time spent: ??
   {{ super() }}
 {% endblock %}
 {% block content %}
+<div class="card" style="background-color:var(--orange)">
+<div class="card-body">
+    <div class="card-title">
+    <h1> Saved Vacations! </h1>
+    </div>
+    <p class="card-text">
+    These are all of your saved vacations from most recent to least recent.
+    </p>
+</div>
+</div>
 {% for v in vacations %}
-    <div class="card" style="background-color:var(--orange)">
-    <div class="card-body">
-        <div class="card-title">
-        <h1> Saved Vacations! </h1>
-        </div>
-        <p class="card-text">
-        These are all of your saved vacations from most recent to least recent.
-        </p>
-    </div>
-    </div>
     <div class="card" style="background-color:var(--white)">
     <div class="card-body">
         <p class="card-text">
-        Country: {{ v[0] }}<br>
-        Forecast: saved forecast <br>
-        Holidays: saved holidays <br>
-        Activity: {{ v[2] }} <br>
-        Book: {{ v[1] }} <br>
+        Country: {{ v[1] }}<br>
+        Forecast: {{ v[2] }} <br>
+        One Holiday: {{ v[3] }} <br>
+        Activity: {{ v[4] }} <br>
+        Book: {{ v[5] }} <br>
         </p>
     </div>
     </div>

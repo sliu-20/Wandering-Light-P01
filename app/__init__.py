@@ -10,7 +10,7 @@ import json
 import ssl
 import urllib.request
 from random import randint
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 import random
 
 MAIN_DB = "vacation.db"
@@ -144,6 +144,7 @@ def getHolidays(country):
         d_data = read_data.decode('utf-8')
         p_data = json.loads(d_data)
         display = ""
+        tempData.update({"HOLIDAYS" : p_data[0]['name']})
         for i in range(len(p_data)):
             display += p_data[i]['name']
             if i < len(p_data) - 1:
@@ -320,7 +321,6 @@ def randomize():
     countrySelection = pickCountry([],[])
     tempData.update({"COUNTRY" : countrySelection})
     displayHolidays = getHolidays("US")
-    tempData.update({"HOLIDAYS" : displayHolidays})
     try:
         cap = countriesCapital.get(countrySelection)
         displayForecast = getForecast(countriesCapital.get(countrySelection))
@@ -347,13 +347,20 @@ def view():
             forecast = tempData.get("FORECAST")
             holidays = tempData.get("HOLIDAYS")
             c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?);""", ((countrySelection, readBook, action, forecast, holidays)))
-            # c.execute("""SELECT * FROM SAVED;""")
-            # saved = c.fetchall()
+            c.execute("""SELECT * FROM SAVED;""")
+            saved = c.fetchall()
             # print(saved)
             db.commit()
             db.close()
         # return render_template("view.html", country = saved['COUNTRY'], book = saved['BOOKS'], activity = saved['ACTIVITY'])
-        return render_template("view.html", country = countrySelection, book = readBook, activity = action)
+        # return render_template("view.html", country = countrySelection, book = readBook, activity = action)
+        # return redirect(url_for("viewpage", vac = saved))
+        return render_template("view.html", vacations = saved)
+
+# @app.route("/viewpage/<vac>")
+# def viewpage(vac):
+#     return render_template("view.html", vacations = vac)
+
 @app.route("/logout")
 def logout():
     session.pop('username', default=None)
