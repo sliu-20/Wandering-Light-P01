@@ -123,7 +123,7 @@ def getForecast(capital):
     try:
         f = open("keys/key_api0.txt", "r")
         api_key = f.read()
-        url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital 
+        url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital
         data = urllib.request.urlopen(url)
         read_data = data.read()
         d_data = read_data.decode('utf-8')
@@ -143,8 +143,10 @@ def getHolidays(country):
         read_data = data.read()
         d_data = read_data.decode('utf-8')
         p_data = json.loads(d_data)
+        randomNumber = randint(0,(len(p_data)-1))
+        print(randomNumber)
         display = ""
-        tempData.update({"HOLIDAYS" : p_data[0]['name']})
+        tempData.update({"HOLIDAYS" : p_data[randomNumber]['name']})
         for i in range(len(p_data)):
             display += p_data[i]['name']
             if i < len(p_data) - 1:
@@ -204,7 +206,7 @@ def login_page():
             c.execute("""SELECT PASSWORD FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
             hash = c.fetchone()
             db.close()
-            print(request.form['password'])
+            #print(request.form['password'])
             if (hash == None):
                 return render_template("login.html", user=session.get('username'), error = "User does not exist.")
             else:
@@ -338,15 +340,26 @@ def view():
         tempErrorMessage.append("You must be logged in to view and save these ideas.")
         return redirect("/login")
     else:
-        if request.method == "POST":
+        if len(tempData) != 0:
+            if request.method == "POST":
+                db = sqlite3.connect(MAIN_DB)
+                c = db.cursor()
+                countrySelection = tempData.get("COUNTRY")
+                readBook = tempData.get("BOOKS")
+                action = tempData.get("ACTIVITY")
+                forecast = tempData.get("FORECAST")
+                holidays = tempData.get("HOLIDAYS")
+                c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?);""", ((countrySelection, readBook, action, forecast, holidays)))
+                c.execute("""SELECT * FROM SAVED;""")
+                saved = c.fetchall()
+                # print(saved)
+                db.commit()
+                db.close()
+                tempData.clear()
+                return render_template("view.html", vacations = saved, user=session.get('username'))
+        else:
             db = sqlite3.connect(MAIN_DB)
             c = db.cursor()
-            countrySelection = tempData.get("COUNTRY")
-            readBook = tempData.get("BOOKS")
-            action = tempData.get("ACTIVITY")
-            forecast = tempData.get("FORECAST")
-            holidays = tempData.get("HOLIDAYS")
-            c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?);""", ((countrySelection, readBook, action, forecast, holidays)))
             c.execute("""SELECT * FROM SAVED;""")
             saved = c.fetchall()
             # print(saved)
@@ -355,7 +368,7 @@ def view():
         # return render_template("view.html", country = saved['COUNTRY'], book = saved['BOOKS'], activity = saved['ACTIVITY'])
         # return render_template("view.html", country = countrySelection, book = readBook, activity = action)
         # return redirect(url_for("viewpage", vac = saved))
-        return render_template("view.html", vacations = saved)
+            return render_template("view.html", vacations = saved, user=session.get('username'))
 
 # @app.route("/viewpage/<vac>")
 # def viewpage(vac):
