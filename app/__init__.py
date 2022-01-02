@@ -144,7 +144,6 @@ def getHolidays(country):
         d_data = read_data.decode('utf-8')
         p_data = json.loads(d_data)
         randomNumber = randint(0,(len(p_data)-1))
-        print(randomNumber)
         display = ""
         tempData.update({"HOLIDAYS" : p_data[randomNumber]['name']})
         for i in range(len(p_data)):
@@ -357,18 +356,17 @@ def view():
                 db.close()
                 tempData.clear()
                 return render_template("view.html", vacations = saved, user=session.get('username'))
-        else:
-            db = sqlite3.connect(MAIN_DB)
-            c = db.cursor()
-            c.execute("""SELECT * FROM SAVED;""")
-            saved = c.fetchall()
-            # print(saved)
-            db.commit()
-            db.close()
+        db = sqlite3.connect(MAIN_DB)
+        c = db.cursor()
+        c.execute("""SELECT * FROM SAVED;""")
+        saved = c.fetchall()
+        # print(saved)
+        db.commit()
+        db.close()
         # return render_template("view.html", country = saved['COUNTRY'], book = saved['BOOKS'], activity = saved['ACTIVITY'])
         # return render_template("view.html", country = countrySelection, book = readBook, activity = action)
         # return redirect(url_for("viewpage", vac = saved))
-            return render_template("view.html", vacations = saved, user=session.get('username'))
+        return render_template("view.html", vacations = saved, user=session.get('username'))
 
 # @app.route("/viewpage/<vac>")
 # def viewpage(vac):
