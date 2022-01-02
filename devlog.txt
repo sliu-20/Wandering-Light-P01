@@ -189,7 +189,7 @@ jonathanW -- 2021-12-23 09:18
 - Added error messages to pages that are redirected.
 
 sophieL -- 2021-12-23 09:19
-- Changed the index.html page to be more accurate. 
+- Changed the index.html page to be more accurate.
 
 roshaniS -- 2021-12-23 09:23
 - Added login tab to the navbar if the user isn't logged in
@@ -197,7 +197,7 @@ roshaniS -- 2021-12-23 09:23
 - Added an if block in suggestedvacation.html to make the Save button only visible to those who are logged in
 
 roshaniS -- 2021-12-27 20:10
-- Added forecast and holidays to the page that displays the randomized suggested vacation 
+- Added forecast and holidays to the page that displays the randomized suggested vacation
 - Added the text files with the api keys for the Weather API and Abstract Public Holidays API
 - Right now, it only displays London's forecast and the United States' holidays, but we will fix it later
 
@@ -208,10 +208,15 @@ roshaniS -- 2021-12-31 00:02
 roshaniS -- 2022-01-01 18:09
 - Fixed book suggestion so that a wider range of books can be chosen
 - Fixed languages so that all languages could be captured (previously only looked at the first language in each country)
-- Fixed the vacation suggestions that utilize user input so that the country is representative of languages and regions chosen (if no country fits, 
+- Fixed the vacation suggestions that utilize user input so that the country is representative of languages and regions chosen (if no country fits,
 a message is displayed stating this)
 - Fixed message that is displayed when there is no location to obtain the forecast from
 
 roshaniS -- 2022-01-01 21:17
-- Worked on "View" page; it mostly works after the user completely randomizes a vacation now, but whenever the user refreshes, the page randomizes 
-some information again before adding that (kind of) new vacation to the "View" page as well 
+- Worked on "View" page; it mostly works after the user completely randomizes a vacation now, but whenever the user refreshes, the page randomizes
+some information again before adding that (kind of) new vacation to the "View" page as well
+
+jonathanW -- 2022-01-02 03:05
+- Fixed the "View" page, will no longer create duplicates upon refresh or anything.
+- Edited the View page so the Navbar displays properly when logged in.
+- Randomized the holiday picking instead of having one static one.
