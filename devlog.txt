@@ -220,3 +220,12 @@ jonathanW -- 2022-01-02 03:05
 - Fixed the "View" page, will no longer create duplicates upon refresh or anything.
 - Edited the View page so the Navbar displays properly when logged in.
 - Randomized the holiday picking instead of having one static one.
+
+jonathanW -- 2022-01-02 16:17
+- Fixed a minor bug in the "View" page via access from randomize page where it would lead to an error.
+- Changes to the Design Document:
+[x] Revised all the functionality of the program components to be more up-to-date
+[x] Updated the database organization
+[x] Updated the actual APIs used
+[x] Updated UI drawings and site map
+[x] Updated Target Date
