@@ -211,3 +211,7 @@ roshaniS -- 2022-01-01 18:09
 - Fixed the vacation suggestions that utilize user input so that the country is representative of languages and regions chosen (if no country fits, 
 a message is displayed stating this)
 - Fixed message that is displayed when there is no location to obtain the forecast from
+
+roshaniS -- 2022-01-01 21:17
+- Worked on "View" page; it mostly works after the user completely randomizes a vacation now, but whenever the user refreshes, the page randomizes 
+some information again before adding that (kind of) new vacation to the "View" page as well 
