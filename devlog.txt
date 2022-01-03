@@ -229,6 +229,7 @@ jonathanW -- 2022-01-02 16:17
 [x] Updated the actual APIs used
 [x] Updated UI drawings and site map
 [x] Updated Target Date
+- Updated readme with api kb
 
 jonathanW -- 2022-01-02 19:29
 - Fixed bug in the choose page where it wouldn't work. Should work now.

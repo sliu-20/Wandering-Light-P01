@@ -10,6 +10,13 @@
 ## Project Description
 Vacation Time is a website dedicated to providing suggestions on vacation time, places, and activities based on user preferences. The user is first directed to a login page where they can either log in to their account or press the register button to register a new account. After logging in, the user is directed to a home page, where they can input and submit some information to get a vacation idea. Not inputting any information and submitting would completely randomize the idea given. The user can save any vacation ideas they like and view these saved ideas in a separate page. 
 
+## API Used
+REST Countries: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_RESTCountries.md  
+Bored API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_BoredAPI.md  
+Open Library: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenLibrary.md  
+Weather API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_WeatherAPI.md  
+Abstract Public Holidays: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_AbstractPublicHolidays.md  
+
 ## Launch Instructions
 ### Launch Virtual Environment:
 
