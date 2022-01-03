@@ -10,7 +10,7 @@ import json
 import ssl
 import urllib.request
 from random import randint
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect
 import random
 
 MAIN_DB = "vacation.db"
@@ -52,6 +52,7 @@ regions = []
 countries = []
 capital = []
 countriesCapital = dict()
+countriesCode = dict()
 tempData = dict()
 tempErrorMessage = []
 subjs = ["young_adult", "fantasy", "thriller", "literary_fiction", "science_fiction", "romance", "historical", "memoir", "narrative", "history"]
@@ -62,7 +63,7 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
     try:
         # the fields are what we are interested in accessing
         # if we want a list of names, capitals, languages, or regions, we can just access it from the table
-        url = "https://restcountries.com/v2/all?fields=name,capital,languages,region"
+        url = "https://restcountries.com/v2/all?fields=name,capital,alpha2Code,languages,region"
         data = urllib.request.urlopen(url)
         read_data = data.read()
         d_data = read_data.decode('utf-8')
@@ -81,6 +82,7 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
             if country['capital'] not in capital:
                 capital.append(country["capital"])
             countriesCapital.update({country["name"] : country["capital"]})
+            countriesCode.update({country["name"] : country["alpha2Code"]})
     except:
         country = country
     # db.commit()
@@ -141,11 +143,11 @@ def getForecast(capital):
     except:
         return "An unknown error with the API occurred. Vacation Time apologizes."
 
-def getHolidays(country):
+def getHolidays(countrycode):
     try:
         f = open("keys/key_api1.txt", "r")
         api_key = f.read()
-        url = "https://holidays.abstractapi.com/v1/?api_key=" + api_key + "&country=" + country + "&year=2020"
+        url = "https://holidays.abstractapi.com/v1/?api_key=" + api_key + "&country=" + countrycode + "&year=2020"
         data = urllib.request.urlopen(url)
         read_data = data.read()
         d_data = read_data.decode('utf-8')
@@ -316,7 +318,7 @@ def suggest():
         tempData.update({"COUNTRY" : countrySelection})
 
         # print(countrySelection)
-        displayHolidays = getHolidays("US")
+        displayHolidays = getHolidays(countriesCode.get(countrySelection))
         try:
             cap = countriesCapital.get(countrySelection)
             displayForecast = getForecast(countriesCapital.get(countrySelection))
@@ -338,7 +340,8 @@ def randomize():
     tempData.update({'BOOKS' : readBook})
     countrySelection = pickCountry([],[])
     tempData.update({"COUNTRY" : countrySelection})
-    displayHolidays = getHolidays("US")
+    displayHolidays = getHolidays(countriesCode.get(countrySelection))
+    # print(countriesCode)
     try:
         cap = countriesCapital.get(countrySelection)
         displayForecast = getForecast(countriesCapital.get(countrySelection))
@@ -380,14 +383,7 @@ def view():
         # print(saved)
         db.commit()
         db.close()
-        # return render_template("view.html", country = saved['COUNTRY'], book = saved['BOOKS'], activity = saved['ACTIVITY'])
-        # return render_template("view.html", country = countrySelection, book = readBook, activity = action)
-        # return redirect(url_for("viewpage", vac = saved))
         return render_template("view.html", vacations = saved, user=session.get('username'))
-
-# @app.route("/viewpage/<vac>")
-# def viewpage(vac):
-#     return render_template("view.html", vacations = vac)
 
 @app.route("/logout")
 def logout():
