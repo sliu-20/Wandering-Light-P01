@@ -95,12 +95,19 @@ def sortCountries(langList, regionList):
     read_data = data.read()
     d_data = read_data.decode('utf-8')
     p_data = json.loads(d_data)
-    for country in p_data:
-        if country['region'] in regionList:
+    if len(regionList) != 0 and len(langList) == 0:
+        for country in p_data:
+            if country['region'] in regionList:
+                pickfrom.append(country['name'])
+    elif len(regionList) == 0 and len(langList) != 0:
+        for country in p_data:
             for lang in country['languages']:
                 if lang['name'] in langList:
                     pickfrom.append(country['name'])
-                    break
+    else:
+        for country in p_data:
+            if country['region'] in regionList and country['languages'][0]['name'] in langList:
+                pickfrom.append(country['name'])
     return pickfrom
 
 def pickCountry(langList, regionList):
@@ -294,6 +301,8 @@ def suggest():
             action = pickActivity(user_party_size[0])
         else:
             action = pickActivity("1")
+        tempData.update({'ACTIVITY' : action})
+
         readBook = ""
         if len(user_subjs) != 0:
             rand_subj = random.choices(user_subjs, k=1)
@@ -301,15 +310,23 @@ def suggest():
         else:
             rand_subj = random.choices(subjs, k=1)
             readBook = pickBook(rand_subj[0])
+        tempData.update({'BOOKS' : readBook})
+
         countrySelection = pickCountry(user_langs, user_regions)
+        tempData.update({"COUNTRY" : countrySelection})
+
         # print(countrySelection)
         displayHolidays = getHolidays("US")
-        cap = countriesCapital.get(countrySelection)
-        if cap is not None:
+        try:
+            cap = countriesCapital.get(countrySelection)
             displayForecast = getForecast(countriesCapital.get(countrySelection))
-        else:
+            tempData.update({"FORECAST" : displayForecast})
+            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
+        except:
             displayForecast = "No location to obtain forecast from."
-        return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, capital = cap, forecast = displayForecast, holidays = displayHolidays)
+            tempData.update({"FORECAST" : displayForecast})
+            return render_template("suggestedvacation.html", user=session.get('username'), activity = action, book = readBook, country = countrySelection, forecast = displayForecast, holidays = displayHolidays)
+
 
 # page for a randomized vacation idea
 @app.route("/randomize", methods=['GET', 'POST'])
