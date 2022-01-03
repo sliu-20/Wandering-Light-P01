@@ -233,3 +233,6 @@ jonathanW -- 2022-01-02 16:17
 
 jonathanW -- 2022-01-02 19:29
 - Fixed bug in the choose page where it wouldn't work. Should work now.
+
+roshaniS -- 2022-01-02 20:38
+- Fixed the display of holidays when suggesting a vacation (uses alpha2Code from the REST Countries API to get the holidays from the Abstract Public Holidays API
