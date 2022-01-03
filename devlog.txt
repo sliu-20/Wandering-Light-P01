@@ -236,3 +236,9 @@ jonathanW -- 2022-01-02 19:29
 
 roshaniS -- 2022-01-02 20:38
 - Fixed the display of holidays when suggesting a vacation (uses alpha2Code from the REST Countries API to get the holidays from the Abstract Public Holidays API
+
+roshaniS -- 2022-01-03 16:56
+- Fixed the display of the suggested vacation so that it only displays one holiday
+- Added a "Login to save!" message at the end of a suggested vacation if a user is not logged in
+- Removed API keys from repo, and retrieved and new ones that were not pushed to the repo
+- Added readme file to the keys folder which some basic instructions for URL formation
