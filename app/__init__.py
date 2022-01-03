@@ -141,7 +141,7 @@ def getForecast(capital):
                 + str(p_data['current']['temp_f']) + " ºF)\nFeels like: " + str(p_data['current']['feelslike_c']) \
                 + " ºC (" + str(p_data['current']['feelslike_f']) + " ºF)\nHumidity: " + str(p_data['current']['humidity'])
     except:
-        return "An unknown error with the API occurred. Vacation Time apologizes."
+        return "There is no forecast available for this capital. Vacation Time apologizes."
 
 def getHolidays(countrycode):
     try:
