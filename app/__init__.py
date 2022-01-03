@@ -130,7 +130,7 @@ def pickCountry(langList, regionList):
 
 def getForecast(capital):
     try:
-        f = open("keys/key_api0.txt", "r")
+        f = open("keys/key_weather.txt", "r")
         api_key = f.read()
         url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital
         data = urllib.request.urlopen(url)
@@ -145,7 +145,7 @@ def getForecast(capital):
 
 def getHolidays(countrycode):
     try:
-        f = open("keys/key_api1.txt", "r")
+        f = open("keys/key_abstractpublicholidays.txt", "r")
         api_key = f.read()
         url = "https://holidays.abstractapi.com/v1/?api_key=" + api_key + "&country=" + countrycode + "&year=2020"
         data = urllib.request.urlopen(url)
@@ -155,11 +155,7 @@ def getHolidays(countrycode):
         randomNumber = randint(0,(len(p_data)-1))
         display = ""
         tempData.update({"HOLIDAYS" : p_data[randomNumber]['name']})
-        for i in range(len(p_data)):
-            display += p_data[i]['name']
-            if i < len(p_data) - 1:
-                display += ", "
-        return display
+        return p_data[randomNumber]['name']
     except:
         return "An unknown error with the API occurred. Vacation Time apologizes."
 

@@ -41,7 +41,7 @@ time spent: ??
         <div class="card" style="background-color:var(--orange)">
         <div class="card-body">
             <div class="card-title">
-            <h1> HOLIDAYS </h1>
+            <h1> RANDOM HOLIDAY </h1>
             </div>
             <p class="card-text">
             {{holidays}}
@@ -78,5 +78,13 @@ time spent: ??
                 <input class="btn btn-dark" type="submit" name="userinput" value="Save">
             </div>
         </form>
+    {% else %}
+        <div class="card" style="background-color:var(--white); text-align: center">
+            <div class="card-body">
+                <div class="card-text">
+                <h1> Login to save! </h1>
+                </div>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
