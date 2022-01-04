@@ -137,9 +137,9 @@ def getForecast(capital):
         read_data = data.read()
         d_data = read_data.decode('utf-8')
         p_data = json.loads(d_data)
-        return "Temperature: " + str(p_data['current']['temp_c']) + " ºC (" \
-                + str(p_data['current']['temp_f']) + " ºF)\nFeels like: " + str(p_data['current']['feelslike_c']) \
-                + " ºC (" + str(p_data['current']['feelslike_f']) + " ºF)\nHumidity: " + str(p_data['current']['humidity'])
+        return "Date: " + p_data['location']['localtime'] + ", Temperature: " + str(p_data['current']['temp_c']) + " ºC (" \
+                + str(p_data['current']['temp_f']) + " ºF), Feels like: " + str(p_data['current']['feelslike_c']) \
+                + " ºC (" + str(p_data['current']['feelslike_f']) + " ºF), Humidity: " + str(p_data['current']['humidity'])
     except:
         return "There is no forecast available for this capital. Vacation Time apologizes."
 
@@ -157,7 +157,7 @@ def getHolidays(countrycode):
         tempData.update({"HOLIDAYS" : p_data[randomNumber]['name']})
         return p_data[randomNumber]['name']
     except:
-        return "An unknown error with the API occurred. Vacation Time apologizes."
+        return "There is no holiday available for this capital. Vacation Time apologizes."
 
 def pickActivity(integer):
     try:
