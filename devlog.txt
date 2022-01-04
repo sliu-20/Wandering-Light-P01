@@ -251,4 +251,4 @@ roshaniS -- 2022-01-03 23:38
 [x] Updated Target Date
 - Added capital to "View" page
 - Fixed "View" page so that it displays saved vacations from most recent to least recent
-- Fixed retrieval of forecasts when the capital has a space in its name
+- Fixed retrieval of forecasts when the capital has spaces in its name
