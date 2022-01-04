@@ -131,7 +131,7 @@ def pickCountry(langList, regionList):
 def getForecast(capital):
     try:
         f = open("keys/key_weather.txt", "r")
-        api_key = f.read()
+        api_key = f.read().strip()
         url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital
         data = urllib.request.urlopen(url)
         read_data = data.read()
@@ -146,7 +146,7 @@ def getForecast(capital):
 def getHolidays(countrycode):
     try:
         f = open("keys/key_abstractpublicholidays.txt", "r")
-        api_key = f.read()
+        api_key = f.read().strip()
         url = "https://holidays.abstractapi.com/v1/?api_key=" + api_key + "&country=" + countrycode + "&year=2020"
         data = urllib.request.urlopen(url)
         read_data = data.read()
