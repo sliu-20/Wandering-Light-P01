@@ -132,7 +132,7 @@ def getForecast(capital):
     try:
         f = open("keys/key_weather.txt", "r")
         api_key = f.read().strip()
-        url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital
+        url = "https://api.weatherapi.com/v1/current.json?key=" + api_key + "&q=" + capital.replace(" ", "_")
         data = urllib.request.urlopen(url)
         read_data = data.read()
         d_data = read_data.decode('utf-8')
@@ -371,7 +371,7 @@ def view():
                 db.commit()
                 db.close()
                 tempData.clear()
-                return render_template("view.html", vacations = saved, user=session.get('username'))
+                return render_template("view.html", vacations = saved, length = len(saved), capitals = countriesCapital, user=session.get('username'))
         db = sqlite3.connect(MAIN_DB)
         c = db.cursor()
         c.execute("""SELECT * FROM SAVED;""")
@@ -379,7 +379,7 @@ def view():
         # print(saved)
         db.commit()
         db.close()
-        return render_template("view.html", vacations = saved, user=session.get('username'))
+        return render_template("view.html", vacations = saved, length = len(saved), capitals = countriesCapital, user=session.get('username'))
 
 @app.route("/logout")
 def logout():
