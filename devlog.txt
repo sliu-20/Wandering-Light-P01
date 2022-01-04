@@ -245,3 +245,9 @@ roshaniS -- 2022-01-03 16:56
 
 sophieL -- 2022-01-03 23:00
 - Fixed API key error caused by atom automatically adding a new line to the end of a txt file (for some reason)
+
+roshaniS -- 2022-01-03 23:38
+- Change to the Design Document:
+[x] Updated Target Date
+- Added capital to "View" page
+- Fixed retrieval of forecasts when the capital has a space in its name
