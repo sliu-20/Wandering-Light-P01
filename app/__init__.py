@@ -90,8 +90,8 @@ def api_store(): # accesses the apis and stores the data into the VACATIONDATA t
 
 api_store()
 
-pickfrom = []
 def sortCountries(langList, regionList):
+    pickfrom = []
     url = "https://restcountries.com/v2/all?fields=name,capital,languages,region"
     data = urllib.request.urlopen(url)
     read_data = data.read()
@@ -119,9 +119,10 @@ def pickCountry(langList, regionList):
             # [0] is necessary because random_country is a list with one string
             return random_country[0]
         else:
-            pickfrom = sortCountries(langList, regionList)
-            if pickfrom:
-                random_country = random.choices(pickfrom, k=1)
+            sortedcountries = sortCountries(langList, regionList)
+            if sortedcountries:
+                random_country = random.choices(sortedcountries, k=1)
+                # print(sortedcountries)
                 return random_country[0]
             else:
                 return "There is no country available with the language and region choices you picked."
@@ -276,7 +277,7 @@ def input():
     if 'username' not in session:
         return redirect("/")
     else:
-        return render_template("input.html", user=session.get('username'), languages=langs, regionlist=regions)
+        return render_template("input.html", user=session.get('username'), languages=sorted(langs), regionlist=sorted(regions))
 
 # page for a suggested vacation to be displayed after the user enters their preferences
 @app.route("/choose", methods=['GET', 'POST'])
