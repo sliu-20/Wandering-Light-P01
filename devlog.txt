@@ -256,3 +256,6 @@ roshaniS -- 2022-01-03 23:38
 roshaniS -- 2022-01-04 12:29
 - Fixed sortCountries() and pickCountries() so that the country that is displayed matches the user's input from the "Questions" page
 - Alphabetized languages and regions on "Questions" page
+
+roshaniS -- 2022-01-04 21:15
+- Fixed "View" page so that it only displays the saved vacations of the user that is logged in
