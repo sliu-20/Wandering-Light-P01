@@ -251,7 +251,7 @@ def register_page():
             if len(password) > 7 and len(password) <= 50:
                 checkPassword = request.form['confirm-password']
                 if password == checkPassword:
-                    print(checkPassword)
+                    # print(checkPassword)
                     c.execute("""INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?,?)""", (request.form['username'], password))
                     db.commit()
                     c.execute("""SELECT USERNAME FROM USERS WHERE USERNAME = ?;""", (request.form['username'],))
@@ -356,26 +356,27 @@ def view():
         tempErrorMessage.append("You must be logged in to view and save these ideas.")
         return redirect("/login")
     else:
+        db = sqlite3.connect(MAIN_DB)
+        c = db.cursor()
+        c.execute("""SELECT USERID FROM USERS WHERE USERNAME = ?;""", (session.get('username'),))
+        userid = c.fetchone()
         if len(tempData) != 0:
             if request.method == "POST":
-                db = sqlite3.connect(MAIN_DB)
-                c = db.cursor()
                 countrySelection = tempData.get("COUNTRY")
                 readBook = tempData.get("BOOKS")
                 action = tempData.get("ACTIVITY")
                 forecast = tempData.get("FORECAST")
                 holidays = tempData.get("HOLIDAYS")
-                c.execute("""INSERT INTO SAVED (COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?);""", ((countrySelection, readBook, action, forecast, holidays)))
-                c.execute("""SELECT * FROM SAVED;""")
+                # print(userid)
+                c.execute("""INSERT INTO SAVED (USERID, COUNTRY, BOOKS, ACTIVITY, FORECAST, HOLIDAYS) VALUES (?, ?, ?, ?, ?, ?);""", ((str(userid), countrySelection, readBook, action, forecast, holidays)))
+                c.execute("""SELECT * FROM SAVED WHERE USERID = ?;""", (str(userid),))
                 saved = c.fetchall()
                 # print(saved)
                 db.commit()
                 db.close()
                 tempData.clear()
                 return render_template("view.html", vacations = saved, length = len(saved), capitals = countriesCapital, user=session.get('username'))
-        db = sqlite3.connect(MAIN_DB)
-        c = db.cursor()
-        c.execute("""SELECT * FROM SAVED;""")
+        c.execute("""SELECT * FROM SAVED WHERE USERID = ?;""", (str(userid),))
         saved = c.fetchall()
         # print(saved)
         db.commit()
